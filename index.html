@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>R.L. GROFF – Author, Social Scientist, Teacher, Storyteller</title>
-<link rel="icon" type="image/png" href="favicon.png">
+
 
 
 <style>
@@ -47,28 +47,31 @@
         font-style: italic;
     }
 
-    /* Compass motif */
-    .header-motif {
-        position: absolute;
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-        border: 2px solid rgba(200, 169, 107, 0.4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0.18;
-        pointer-events: none;
-    }
+    /* Header motif using favicon image */
+.header-motif {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 2px solid rgba(200, 169, 107, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: 5;
+}
 
-    .header-motif::before {
-        content: "N • E • S • W";
-        font-size: 0.65rem;
-        letter-spacing: 4px;
-    }
+.motif-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.45;
+}
+
 
     /* Ribbon motif */
     .header-ribbon {
@@ -225,11 +228,16 @@
 <body>
 
 <header id="home">
-    <div class="header-motif"></div>
+    <div class="header-motif">
+        <img src="favicon.png" alt="Compass motif" class="motif-image">
+    </div>
+
     <div class="header-ribbon"></div>
+
     <h1>R.L. GROFF – Author, Social Scientist, Teacher, Storyteller</h1>
     <p>Exploring faith, theological truth, leadership, and the unseen currents of the human soul.</p>
 </header>
+
 
 <nav>
     <a href="#home">Home</a>
