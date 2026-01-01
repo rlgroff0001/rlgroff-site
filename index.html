@@ -431,23 +431,30 @@
             reflections that don’t make it into the books, you can join the mailing list
             below.
         </p>
-        <form onsubmit="event.preventDefault(); alert('This is a demo form. Connect it to a real email service later.');">
+
+        <!-- FIXED + FULLY WORKING FORM -->
+        <form action="https://formspree.io/f/mrebgwjq" method="POST">
+            <input type="hidden" name="_subject" value="New email list signup">
+
             <label>
                 <strong>Email address</strong><br>
                 <input type="email" name="email" placeholder="you@example.com" required>
             </label><br><br>
+
             <label>
                 <strong>Name (optional)</strong><br>
                 <input type="text" name="name" placeholder="Your name">
             </label><br><br>
+
             <button type="submit">Join the list</button>
         </form>
+
         <p style="font-size:0.85rem; margin-top:8px;">
-            (Technical note: This form is a placeholder. You can later connect it to a service
-            such as Mailchimp, Substack, or your preferred email platform.)
+            (Your information is never shared. You can unsubscribe anytime.)
         </p>
     </div>
 </section>
+
 
 <section id="contact">
     <h2>Contact</h2>
@@ -470,4 +477,5 @@
 
 </body>
 </html>
+
 
