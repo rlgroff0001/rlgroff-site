@@ -472,10 +472,10 @@
     <h2>Contact</h2>
 
     <div class="card" 
-         style="display: flex; gap: 2rem; align-items: flex-start;">
+         style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
 
         <!-- Left Column: Text -->
-        <div style="flex: 1;">
+        <div style="flex: 1; min-width: 260px;">
             <p>
                 For speaking engagements, interviews, teaching inquiries, or reader correspondence,
                 you can reach me at:
@@ -489,15 +489,21 @@
             </p>
         </div>
 
-        <!-- Right Column: Image -->
-        <div style="flex: 1; text-align: center;">
+        <!-- Right Column: Sepia Image -->
+        <div style="flex: 1; min-width: 200px; text-align: center;">
             <img src="rob-groff-bw.jpg"
                  alt="Robert Groff author photo"
-                 style="max-width: 200px; height: auto; border-radius: 4px;">
+                 style="
+                    max-width: 200px;
+                    height: auto;
+                    border-radius: 4px;
+                    filter: sepia(85%) contrast(95%) brightness(95%);
+                 ">
         </div>
 
     </div>
 </section>
+
 
 
 <footer>
@@ -506,6 +512,7 @@
 
 </body>
 </html>
+
 
 
 
