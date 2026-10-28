@@ -16,6 +16,7 @@
             --amber-gold: #fbbf24;
             --q-accent: #10b981;
             --q-glow: rgba(16, 185, 129, 0.3);
+            --today-glow: #38bdf8;
         }
 
         body {
@@ -158,6 +159,7 @@
             flex-direction: column;
             justify-content: space-between;
             transition: all 0.2s ease;
+            position: relative;
         }
         .day-cell:hover {
             border-color: var(--q-accent);
@@ -167,10 +169,16 @@
         }
         .day-cell.key-day { border-color: var(--amber-gold); background: rgba(245, 158, 11, 0.12); }
 
+        /* HIGH-VISIBILITY TODAY ILLUMINATION OVERRIDE */
         .day-cell.today-cell {
-            border: 2px solid #38bdf8;
-            background: rgba(56, 189, 248, 0.18);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            border: 2px solid var(--today-glow) !important;
+            background: rgba(56, 189, 248, 0.22) !important;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5) !important;
+            transform: scale(1.02);
+            z-index: 2;
+        }
+        .day-cell.today-cell:hover {
+            box-shadow: 0 0 28px rgba(56, 189, 248, 0.75) !important;
         }
 
         .day-num { font-weight: bold; font-size: 1.15rem; }
@@ -198,6 +206,18 @@
             border: 1px solid rgba(56, 189, 248, 0.3);
             display: inline-block;
             margin-top: 6px;
+        }
+
+        .today-badge {
+            background: var(--today-glow);
+            color: #050811;
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+            margin-left: 6px;
+            display: inline-block;
         }
 
         .modal-overlay {
@@ -555,9 +575,11 @@
         const firstDayObj = getGregorianOverlayObj(mData, 1, selectedYear);
         const startOffset = firstDayObj.dayOfWeek;
 
-        // Current real-world date comparison
+        // Active Real-World System Date Comparison
         const now = new Date();
-        const todayTime = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+        const todayYear = now.getFullYear();
+        const todayMonth = now.getMonth();
+        const todayDate = now.getDate();
 
         for (let i = 0; i < startOffset; i++) {
             grid.innerHTML += `<div style="visibility:hidden;"></div>`;
@@ -565,19 +587,26 @@
 
         for (let d = 1; d <= mData.days; d++) {
             const gregObj = getGregorianOverlayObj(mData, d, selectedYear);
-            const cellTime = new Date(gregObj.dateObj.getFullYear(), gregObj.dateObj.getMonth(), gregObj.dateObj.getDate()).getTime();
+            const cellDateObj = gregObj.dateObj;
             
-            const isToday = cellTime === todayTime;
-            const lambda = calculateSolarLongitudeForDate(gregObj.dateObj);
-            const theta = calculateLunarPhaseAngleForDate(gregObj.dateObj);
-            const sunData = calculateSunriseSunset(gregObj.dateObj, userLat, userLng);
+            // Check exact year, month, and day matching
+            const isToday = cellDateObj.getFullYear() === todayYear &&
+                            cellDateObj.getMonth() === todayMonth &&
+                            cellDateObj.getDate() === todayDate;
+
+            const lambda = calculateSolarLongitudeForDate(cellDateObj);
+            const theta = calculateLunarPhaseAngleForDate(cellDateObj);
+            const sunData = calculateSunriseSunset(cellDateObj, userLat, userLng);
             const isKey = mData.key && mData.key.day === d;
 
             grid.innerHTML += `
                 <div onclick="inspectDay(${d}, ${lambda.toFixed(1)}, ${theta.toFixed(1)}, '${gregObj.fullLabel}', '${sunData.sunrise}', '${sunData.sunset}', '${sunData.duration}')" 
                      class="day-cell ${isToday ? 'today-cell' : ''} ${isKey ? 'key-day' : ''}">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span class="day-num font-mono">D${d} ${isToday ? '<span style="color:#38bdf8; font-size:0.7rem; font-weight:bold;">[TODAY]</span>' : ''}</span>
+                        <span class="day-num font-mono">
+                            D${d}
+                            ${isToday ? '<span class="today-badge">TODAY</span>' : ''}
+                        </span>
                         <div style="display:flex; gap:8px; font-size:0.82rem;" class="font-mono">
                             <span class="day-lambda">&lambda; ${lambda.toFixed(0)}&deg;</span>
                             <span class="day-theta">&theta; ${theta.toFixed(0)}&deg;</span>
@@ -628,10 +657,12 @@
         selectedYear = today.getFullYear();
         document.getElementById('year-input').value = selectedYear;
 
-        let matchedQ = 2; // Default to Quarter 2 (Preparation)
-        let matchedM = 2; // Default to Month 3
+        let matchedQ = 2; 
+        let matchedM = 2; 
 
-        const todayTime = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+        const todayYear = today.getFullYear();
+        const todayMonth = today.getMonth();
+        const todayDate = today.getDate();
 
         for (let q = 1; q <= 4; q++) {
             for (let mIdx = 0; mIdx < HELIOTERRAN_DATA[q].months.length; mIdx++) {
@@ -641,8 +672,9 @@
                 
                 const startTime = new Date(startObj.dateObj.getFullYear(), startObj.dateObj.getMonth(), startObj.dateObj.getDate()).getTime();
                 const endTime = new Date(endObj.dateObj.getFullYear(), endObj.dateObj.getMonth(), endObj.dateObj.getDate()).getTime();
+                const targetTime = new Date(todayYear, todayMonth, todayDate).getTime();
 
-                if (todayTime >= startTime && todayTime <= endTime) {
+                if (targetTime >= startTime && targetTime <= endTime) {
                     matchedQ = q;
                     matchedM = mIdx;
                     break;
