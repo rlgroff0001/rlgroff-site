@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helioterran Dual-Date Overlay Calendar</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap');
+
+        :root {
+            --bg-dark: #050811;
+            --card-bg: rgba(13, 19, 36, 0.85);
+            --border-color: rgba(255, 255, 255, 0.12);
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --amber-gold: #fbbf24;
+            --q-accent: #10b981;
+            --q-glow: rgba(16, 185, 129, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        .container { max-width: 1280px; width: 100%; }
+
+        .theme-q1 { --q-accent: #10b981; --q-glow: rgba(16, 185, 129, 0.3); }
+        .theme-q2 { --q-accent: #f59e0b; --q-glow: rgba(245, 158, 11, 0.3); }
+        .theme-q3 { --q-accent: #3b82f6; --q-glow: rgba(59, 130, 246, 0.3); }
+        .theme-q4 { --q-accent: #ec4899; --q-glow: rgba(236, 72, 153, 0.3); }
+
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 15px 35px -5px rgba(0,0,0,0.6);
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .title-block h1 { margin: 0; font-size: 1.85rem; color: var(--text-main); letter-spacing: 0.06em; }
+        .title-block p { margin: 6px 0 0 0; font-size: 0.95rem; color: var(--text-muted); }
+
+        .ticker-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 14px;
+            flex-wrap: wrap;
+        }
+
+        .ticker-item { display: flex; flex-direction: column; }
+        .ticker-label { font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; }
+        .ticker-value { font-size: 1.1rem; font-weight: bold; }
+
+        .year-selector-box {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding-right: 12px;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .year-input {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1.5px solid var(--amber-gold);
+            color: var(--amber-gold);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: bold;
+            font-size: 1.15rem;
+            padding: 6px 10px;
+            border-radius: 8px;
+            width: 95px;
+            text-align: center;
+            outline: none;
+        }
+
+        .location-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 0.88rem;
+        }
+
+        .q-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .q-btn {
+            background: rgba(17, 25, 46, 0.7);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 18px;
+            color: var(--text-main);
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+        .q-btn:hover, .q-btn.active {
+            border-color: var(--q-accent);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 20px var(--q-glow);
+        }
+
+        .month-bar { display: flex; gap: 12px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 6px; }
+        .m-btn {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+        .m-btn.active {
+            border-color: var(--amber-gold);
+            color: var(--amber-gold);
+            background: rgba(245, 158, 11, 0.15);
+        }
+
+        .weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 0.95rem; font-weight: bold; color: var(--text-muted); letter-spacing: 0.08em; margin-bottom: 12px; }
+        .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+
+        .day-cell {
+            background: rgba(17, 25, 46, 0.75);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            min-height: 125px;
+            padding: 12px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+        .day-cell:hover {
+            border-color: var(--q-accent);
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 6px 18px var(--q-glow);
+        }
+        .day-cell.key-day { border-color: var(--amber-gold); background: rgba(245, 158, 11, 0.12); }
+
+        .day-num { font-weight: bold; font-size: 1.15rem; }
+        .day-lambda { font-size: 0.82rem; color: var(--amber-gold); font-weight: 600; }
+        .day-theta { font-size: 0.82rem; color: #a5b4fc; font-weight: 600; }
+        
+        .day-sun-info {
+            font-size: 0.75rem;
+            color: #fcd34d;
+            background: rgba(251, 191, 36, 0.08);
+            padding: 3px 6px;
+            border-radius: 4px;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            margin-top: 4px;
+            display: inline-block;
+        }
+
+        .day-greg-overlay { 
+            font-size: 0.88rem; 
+            font-weight: 700; 
+            color: #38bdf8; 
+            background: rgba(56, 189, 248, 0.12); 
+            padding: 4px 8px; 
+            border-radius: 6px; 
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            display: inline-block;
+            margin-top: 6px;
+        }
+
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 1000;
+        }
+        .modal-overlay.hidden { display: none; }
+        .modal-card {
+            background: #0f172a; border: 1px solid var(--border-color); border-radius: 22px;
+            max-width: 620px; width: 100%; padding: 28px; position: relative;
+        }
+        .close-btn {
+            position: absolute; top: 18px; right: 18px; background: rgba(255, 255, 255, 0.15);
+            border: none; color: #fff; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1.2rem;
+        }
+        .btn-action {
+            width: 100%; padding: 14px; border: none; border-radius: 12px; background: var(--amber-gold);
+            color: #000; font-weight: bold; font-size: 1rem; cursor: pointer; margin-top: 20px;
+        }
+    </style>
+</head>
+<body class="theme-q1">
+
+<div class="container">
+    <div class="glass-card header-bar">
+        <div class="title-block">
+            <h1 class="font-cinzel">HELIOTERRAN DUAL-DATE OVERLAY</h1>
+            <p>Real-Time Civil Overlay: Helioterran Orbital Arc vs. Gregorian Civil Date</p>
+        </div>
+        <div class="ticker-box font-mono">
+            <div class="year-selector-box">
+                <span class="ticker-label">CIVIL YEAR</span>
+                <input type="number" id="year-input" class="year-input" value="2026" min="1000" max="3000" onchange="updateSelectedYear(this.value)">
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-label">Solar Longitude</span>
+                <span class="ticker-value" id="ticker-lambda" style="color:var(--amber-gold)">&lambda; = --.--&deg;</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-label">Lunar Phase</span>
+                <span class="ticker-value" id="ticker-theta" style="color:#818cf8">&theta;_L = --.-&deg;</span>
+            </div>
+            <button onclick="openPhiModal()" class="m-btn" style="border-color:var(--amber-gold); color:var(--amber-gold)">&Phi; RESET</button>
+        </div>
+    </div>
+
+    <div class="location-bar font-mono">
+        <div>
+            <span style="color:var(--text-muted);">SOLAR ILLUMINATION OBSERVER: </span>
+            <span id="observer-coords" style="color:var(--amber-gold); font-weight:bold;">0.00&deg; N, 0.00&deg; E (Equatorial Baseline)</span>
+        </div>
+        <button onclick="requestUserLocation()" class="m-btn" style="padding:6px 12px; font-size:0.8rem; border-color:#38bdf8; color:#38bdf8;">ENABLE LOCAL SOLAR DATA</button>
+    </div>
+
+    <div class="q-grid">
+        <button onclick="selectQuarter(1)" id="q1-btn" class="q-btn active">
+            <div class="font-mono" style="font-size:0.8rem; color:#10b981; font-weight:bold;">QUARTER 1</div>
+            <div class="font-cinzel" style="font-size:1.35rem; font-weight:bold;">PRODUCTION</div>
+            <div class="font-mono" style="font-size:0.75rem; color:var(--text-muted);">&lambda; = 45&deg; &rarr; 135&deg;</div>
+            <div class="font-mono" id="q1-greg-range" style="font-size:0.85rem; color:#38bdf8; font-weight:bold; margin-top:6px;">5MAY2026 - 6AUG2026</div>
+        </button>
+        <button onclick="selectQuarter(2)" id="q2-btn" class="q-btn">
+            <div class="font-mono" style="font-size:0.8rem; color:#f59e0b; font-weight:bold;">QUARTER 2</div>
+            <div class="font-cinzel" style="font-size:1.35rem; font-weight:bold;">PREPARATION</div>
+            <div class="font-mono" style="font-size:0.75rem; color:var(--text-muted);">&lambda; = 135&deg; &rarr; 225&deg;</div>
+            <div class="font-mono" id="q2-greg-range" style="font-size:0.85rem; color:#38bdf8; font-weight:bold; margin-top:6px;">7AUG2026 - 6NOV2026</div>
+        </button>
+        <button onclick="selectQuarter(3)" id="q3-btn" class="q-btn">
+            <div class="font-mono" style="font-size:0.8rem; color:#3b82f6; font-weight:bold;">QUARTER 3</div>
+            <div class="font-cinzel" style="font-size:1.35rem; font-weight:bold;">REST</div>
+            <div class="font-mono" style="font-size:0.75rem; color:var(--text-muted);">&lambda; = 225&deg; &rarr; 315&deg;</div>
+            <div class="font-mono" id="q3-greg-range" style="font-size:0.85rem; color:#38bdf8; font-weight:bold; margin-top:6px;">7NOV2026 - 3FEB2027</div>
+        </button>
+        <button onclick="selectQuarter(4)" id="q4-btn" class="q-btn">
+            <div class="font-mono" style="font-size:0.8rem; color:#ec4899; font-weight:bold;">QUARTER 4</div>
+            <div class="font-cinzel" style="font-size:1.35rem; font-weight:bold;">AWAKENING</div>
+            <div class="font-mono" style="font-size:0.75rem; color:var(--text-muted);">&lambda; = 315&deg; &rarr; 45&deg;</div>
+            <div class="font-mono" id="q4-greg-range" style="font-size:0.85rem; color:#38bdf8; font-weight:bold; margin-top:6px;">4FEB2027 - 4MAY2027</div>
+        </button>
+    </div>
+
+    <div class="month-bar font-mono" id="month-tabs"></div>
+
+    <div class="glass-card">
+        <div style="margin-bottom: 20px;">
+            <h2 id="month-title" class="font-cinzel" style="margin:0; font-size:1.65rem;">Quarter 1 · Month 1</h2>
+            <p id="month-desc" style="margin:6px 0 0 0; font-size:0.88rem; color:var(--text-muted);">Active energy expansion.</p>
+        </div>
+
+        <div class="weekdays font-mono">
+            <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
+        </div>
+
+        <div class="days-grid" id="calendar-grid"></div>
+    </div>
+</div>
+
+<div id="day-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+        <button onclick="closeDayModal()" class="close-btn">&times;</button>
+        <h3 id="modal-title" class="font-cinzel" style="margin:0 0 18px 0; color:var(--amber-gold); font-size:1.35rem;">Day Coordinates Breakdown</h3>
+        
+        <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border-color); padding:16px; border-radius:14px; margin-bottom:16px;" class="font-mono">
+            <span style="color:var(--text-muted); display:block; font-size:0.75rem; text-transform:uppercase;">Helioterran Temporal Structure</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+                <span id="modal-quarter-info" style="font-weight:bold; color:var(--q-accent); font-size:1.1rem;">Quarter 1 (Production)</span>
+                <span id="modal-month-info" style="font-weight:bold; color:#fff; font-size:1.1rem;">Month 1 (Q1.M1)</span>
+            </div>
+        </div>
+
+        <div class="font-mono" style="display:grid; grid-template-columns:1fr 1fr; gap:14px; font-size:0.9rem; margin-bottom:18px;">
+            <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:10px;">
+                <span style="color:var(--text-muted); display:block; font-size:0.72rem;">SOLAR LONGITUDE</span>
+                <span id="modal-lambda" style="font-weight:bold; color:var(--amber-gold); font-size:1.15rem;">&lambda; 45.0&deg;</span>
+            </div>
+            <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:10px;">
+                <span style="color:var(--text-muted); display:block; font-size:0.72rem;">SYNODIC LUNAR ANGLE</span>
+                <span id="modal-theta" style="font-weight:bold; color:#818cf8; font-size:1.15rem;">&theta;_L 12.2&deg;</span>
+            </div>
+        </div>
+
+        <div style="background:rgba(251, 191, 36, 0.08); border:1px solid rgba(251, 191, 36, 0.3); padding:16px; border-radius:14px; margin-bottom:18px;" class="font-mono">
+            <span style="color:var(--amber-gold); display:block; font-size:0.78rem; font-weight:bold;">LOCAL SOLAR ILLUMINATION</span>
+            <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:0.95rem;">
+                <div><span style="color:var(--text-muted)">Sunrise:</span> <span id="modal-sunrise" style="color:#fff; font-weight:bold;">06:12</span></div>
+                <div><span style="color:var(--text-muted)">Sunset:</span> <span id="modal-sunset" style="color:#fff; font-weight:bold;">19:34</span></div>
+                <div><span style="color:var(--text-muted)">Duration of Sunlight:</span> <span id="modal-daylight" style="color:var(--amber-gold); font-weight:bold;">13h 22m</span></div>
+            </div>
+        </div>
+
+        <div style="background:rgba(56, 189, 248, 0.12); border:1px solid rgba(56, 189, 248, 0.35); padding:16px; border-radius:14px; margin-bottom:18px;">
+            <span style="color:#38bdf8; display:block; font-size:0.78rem; font-weight:bold;" class="font-mono">GREGORIAN OVERLAY EQUIVALENT</span>
+            <span id="modal-greg" class="font-mono" style="font-size:1.15rem; font-weight:bold; color:#fff;">Wednesday, 28 October 2026</span>
+        </div>
+        <button onclick="closeDayModal()" class="btn-action">CLOSE INSPECTOR</button>
+    </div>
+</div>
+
+<div id="phi-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+        <button onclick="closePhiModal()" class="close-btn">&times;</button>
+        <h3 class="font-cinzel" style="margin:0 0 10px 0; color:var(--amber-gold); font-size:1.35rem;">&Phi; RESET DAY (MAY 4)</h3>
+        <p style="font-size:0.95rem; color:var(--text-muted); line-height:1.5;">The 12 Solar Arc Months account for 364 operational days. May 4 operates as an out-of-time global reset for ecological auditing and temporal clock alignment.</p>
+        <button onclick="closePhiModal()" class="btn-action">ACKNOWLEDGE RESET</button>
+    </div>
+</div>
+
+<script>
+    const HELIOTERRAN_DATA = {
+        1: { name: "Production", label: "Quarter 1", theme: "theme-q1", months: [
+            { id: 1, name: "Q1.M1", days: 31, startArc: 45, endArc: 75, gregMonth: 4, startDay: 5, key: { day: 1, label: "New Year" } },
+            { id: 2, name: "Q1.M2", days: 31, startArc: 75, endArc: 105, gregMonth: 5, startDay: 5, key: { day: 17, label: "Solstice" } },
+            { id: 3, name: "Q1.M3", days: 32, startArc: 105, endArc: 135, gregMonth: 6, startDay: 6, key: null }
+        ]},
+        2: { name: "Preparation", label: "Quarter 2", theme: "theme-q2", months: [
+            { id: 1, name: "Q2.M1", days: 31, startArc: 135, endArc: 165, gregMonth: 7, startDay: 7, key: null },
+            { id: 2, name: "Q2.M2", days: 30, startArc: 165, endArc: 195, gregMonth: 8, startDay: 7, key: { day: 16, label: "Equinox" } },
+            { id: 3, name: "Q2.M3", days: 31, startArc: 195, endArc: 225, gregMonth: 9, startDay: 7, key: null }
+        ]},
+        3: { name: "Rest", label: "Quarter 3", theme: "theme-q3", months: [
+            { id: 1, name: "Q3.M1", days: 30, startArc: 225, endArc: 255, gregMonth: 10, startDay: 7, key: null },
+            { id: 2, name: "Q3.M2", days: 29, startArc: 255, endArc: 285, gregMonth: 11, startDay: 7, key: { day: 15, label: "Deep Sleep" } },
+            { id: 3, name: "Q3.M3", days: 30, startArc: 285, endArc: 315, gregMonth: 0, startDay: 5, key: null }
+        ]},
+        4: { name: "Awakening", label: "Quarter 4", theme: "theme-q4", months: [
+            { id: 1, name: "Q4.M1", days: 30, startArc: 315, endArc: 345, gregMonth: 1, startDay: 4, key: null },
+            { id: 2, name: "Q4.M2", days: 30, startArc: 345, endArc: 15, gregMonth: 2, startDay: 6, key: { day: 16, label: "Equinox" } },
+            { id: 3, name: "Q4.M3", days: 30, startArc: 15, endArc: 45, gregMonth: 3, startDay: 5, key: null }
+        ]}
+    };
+
+    let currentQ = 1;
+    let currentM = 0;
+    let selectedYear = 2026;
+    let userLat = 0.0;
+    let userLng = 0.0;
+    let hasCustomLocation = false;
+
+    function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+    }
+
+    // High-Precision NOAA Solar Calculator with Equation of Time & Local Timezone Output
+    function calculateSunriseSunset(date, lat, lng) {
+        const startOfYear = new Date(date.getFullYear(), 0, 0);
+        const diff = date - startOfYear;
+        const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+        // 1. Solar Declination & Equation of Time (EoT)
+        const gamma = (2 * Math.PI / 365) * (dayOfYear - 1);
+        const declination = 23.45 * Math.sin((360 / 365) * (dayOfYear - 81) * (Math.PI / 180));
+        
+        const eqTime = 229.18 * (0.000075 + 0.001868 * Math.cos(gamma) - 0.032077 * Math.sin(gamma) 
+                       - 0.014615 * Math.cos(2 * gamma) - 0.040849 * Math.sin(2 * gamma));
+
+        const latRad = lat * (Math.PI / 180);
+        const decRad = declination * (Math.PI / 180);
+
+        // 2. Hour Angle for standard solar zenith (90.833° accounts for atmospheric refraction)
+        const cosHourAngle = (Math.cos(90.833 * Math.PI / 180) - (Math.sin(latRad) * Math.sin(decRad))) / (Math.cos(latRad) * Math.cos(decRad));
+        
+        if (cosHourAngle > 1) return { sunrise: "Polar Night", sunset: "Polar Night", duration: "0h 0m" };
+        if (cosHourAngle < -1) return { sunrise: "Midnight Sun", sunset: "Midnight Sun", duration: "24h 0m" };
+
+        const hourAngle = Math.acos(cosHourAngle) * (180 / Math.PI);
+        const daylightHours = (2 * hourAngle) / 15;
+
+        // 3. True Solar Noon in UTC minutes
+        const solarNoonUTC = 720 - (4 * lng) - eqTime;
+
+        // 4. Convert UTC minutes to Local Civil Clock Minutes using browser timezone offset
+        const localNoonMinutes = solarNoonUTC - date.getTimezoneOffset();
+
+        const sunriseMinutes = localNoonMinutes - (hourAngle * 4);
+        const sunsetMinutes = localNoonMinutes + (hourAngle * 4);
+
+        const formatTime = (mins) => {
+            let normalized = (mins % 1440 + 1440) % 1440;
+            const h = Math.floor(normalized / 60);
+            const m = Math.floor(normalized % 60);
+            return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+        };
+
+        const durationH = Math.floor(daylightHours);
+        const durationM = Math.round((daylightHours - durationH) * 60);
+
+        return {
+            sunrise: formatTime(sunriseMinutes),
+            sunset: formatTime(sunsetMinutes),
+            duration: `${durationH}h ${durationM}m`
+        };
+    }
+
+    function requestUserLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((pos) => {
+                userLat = pos.coords.latitude;
+                userLng = pos.coords.longitude;
+                hasCustomLocation = true;
+                document.getElementById('observer-coords').innerText = `${userLat.toFixed(2)}° N, ${userLng.toFixed(2)}° E (Local Coordinates)`;
+                renderCalendar();
+            }, () => {
+                alert("Location permission denied. Defaulting to Equatorial Baseline.");
+            });
+        }
+    }
+
+    function getGregorianOverlayObj(monthData, day, year) {
+        const monthsList = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const daysInMonth = [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        
+        let mIdx = monthData.gregMonth;
+        let yOffset = (currentQ === 3 && currentM === 2) || currentQ === 4 ? (monthData.gregMonth <= 3 ? 1 : 0) : 0;
+        let targetYear = year + yOffset;
+        let calcDay = monthData.startDay + (day - 1);
+
+        if (calcDay > daysInMonth[mIdx]) {
+            calcDay -= daysInMonth[mIdx];
+            mIdx = (mIdx + 1) % 12;
+            if (mIdx === 0) targetYear++;
+        }
+
+        const dateObj = new Date(targetYear, mIdx, calcDay);
+        const fullLongFormat = dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+        return {
+            label: `${monthsList[mIdx]} ${calcDay}`,
+            fullLabel: fullLongFormat,
+            dayOfWeek: dateObj.getDay(),
+            dateObj: dateObj,
+            dayNum: calcDay,
+            monthNameUpper: monthsList[mIdx].toUpperCase(),
+            targetYear: targetYear
+        };
+    }
+
+    function updateQuarterRanges() {
+        const q1Start = getGregorianOverlayObj(HELIOTERRAN_DATA[1].months[0], 1, selectedYear);
+        const q1End = getGregorianOverlayObj(HELIOTERRAN_DATA[1].months[2], 32, selectedYear);
+        document.getElementById('q1-greg-range').innerText = `${q1Start.dayNum}${q1Start.monthNameUpper}${q1Start.targetYear} - ${q1End.dayNum}${q1End.monthNameUpper}${q1End.targetYear}`;
+
+        const q2Start = getGregorianOverlayObj(HELIOTERRAN_DATA[2].months[0], 1, selectedYear);
+        const q2End = getGregorianOverlayObj(HELIOTERRAN_DATA[2].months[2], 31, selectedYear);
+        document.getElementById('q2-greg-range').innerText = `${q2Start.dayNum}${q2Start.monthNameUpper}${q2Start.targetYear} - ${q2End.dayNum}${q2End.monthNameUpper}${q2End.targetYear}`;
+
+        const q3Start = getGregorianOverlayObj(HELIOTERRAN_DATA[3].months[0], 1, selectedYear);
+        const q3End = getGregorianOverlayObj(HELIOTERRAN_DATA[3].months[2], 30, selectedYear);
+        document.getElementById('q3-greg-range').innerText = `${q3Start.dayNum}${q3Start.monthNameUpper}${q3Start.targetYear} - ${q3End.dayNum}${q3End.monthNameUpper}${q3End.targetYear}`;
+
+        const q4Start = getGregorianOverlayObj(HELIOTERRAN_DATA[4].months[0], 1, selectedYear);
+        const q4End = getGregorianOverlayObj(HELIOTERRAN_DATA[4].months[2], 30, selectedYear);
+        document.getElementById('q4-greg-range').innerText = `${q4Start.dayNum}${q4Start.monthNameUpper}${q4Start.targetYear} - ${q4End.dayNum}${q4End.monthNameUpper}${q4End.targetYear}`;
+    }
+
+    function updateSelectedYear(val) {
+        const parsed = parseInt(val, 10);
+        if (!isNaN(parsed) && parsed >= 1000 && parsed <= 3000) {
+            selectedYear = parsed;
+            updateQuarterRanges();
+            renderCalendar();
+            updateTicker();
+        }
+    }
+
+    function selectQuarter(q) {
+        currentQ = q;
+        currentM = 0;
+        document.body.className = HELIOTERRAN_DATA[q].theme;
+        
+        [1,2,3,4].forEach(i => {
+            const btn = document.getElementById(`q${i}-btn`);
+            if (i === q) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+
+        renderMonthTabs();
+        renderCalendar();
+    }
+
+    function renderMonthTabs() {
+        const tabs = document.getElementById('month-tabs');
+        tabs.innerHTML = HELIOTERRAN_DATA[currentQ].months.map((m, idx) => `
+            <button onclick="selectMonth(${idx})" class="m-btn ${idx === currentM ? 'active' : ''}">${m.name} (${m.days}D)</button>
+        `).join('');
+    }
+
+    function selectMonth(idx) {
+        currentM = idx;
+        renderMonthTabs();
+        renderCalendar();
+    }
+
+    function calculateSolarLongitudeForDate(date) {
+        const julian = (date.getTime() / 86400000) + 2440587.5;
+        const D = julian - 2451545.0;
+        const g = (357.529 + 0.98560028 * D) % 360;
+        const q = (280.459 + 0.98564736 * D) % 360;
+        const lambda = (q + 1.915 * Math.sin(g * Math.PI / 180) + 0.020 * Math.sin(2 * g * Math.PI / 180)) % 360;
+        return (lambda + 360) % 360;
+    }
+
+    function calculateLunarPhaseAngleForDate(date) {
+        const julian = (date.getTime() / 86400000) + 2440587.5;
+        const D = julian - 2451545.0;
+        const thetaL = (297.8502 + 12.19074912 * D) % 360;
+        return (thetaL + 360) % 360;
+    }
+
+    function renderCalendar() {
+        const qData = HELIOTERRAN_DATA[currentQ];
+        const mData = qData.months[currentM];
+
+        document.getElementById('month-title').innerText = `${qData.label} (${qData.name}) · ${mData.name} [${selectedYear}]`;
+        
+        const grid = document.getElementById('calendar-grid');
+        grid.innerHTML = '';
+
+        const firstDayObj = getGregorianOverlayObj(mData, 1, selectedYear);
+        const startOffset = firstDayObj.dayOfWeek;
+
+        for (let i = 0; i < startOffset; i++) {
+            grid.innerHTML += `<div style="visibility:hidden;"></div>`;
+        }
+
+        for (let d = 1; d <= mData.days; d++) {
+            const gregObj = getGregorianOverlayObj(mData, d, selectedYear);
+            const lambda = calculateSolarLongitudeForDate(gregObj.dateObj);
+            const theta = calculateLunarPhaseAngleForDate(gregObj.dateObj);
+            const sunData = calculateSunriseSunset(gregObj.dateObj, userLat, userLng);
+            const isKey = mData.key && mData.key.day === d;
+
+            grid.innerHTML += `
+                <div onclick="inspectDay(${d}, ${lambda.toFixed(1)}, ${theta.toFixed(1)}, '${gregObj.fullLabel}', '${sunData.sunrise}', '${sunData.sunset}', '${sunData.duration}')" class="day-cell ${isKey ? 'key-day' : ''}">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="day-num font-mono">D${d}</span>
+                        <div style="display:flex; gap:8px; font-size:0.82rem;" class="font-mono">
+                            <span class="day-lambda">&lambda; ${lambda.toFixed(0)}&deg;</span>
+                            <span class="day-theta">&theta; ${theta.toFixed(0)}&deg;</span>
+                        </div>
+                    </div>
+                    ${isKey ? `<div style="font-size:0.75rem; color:var(--amber-gold); font-weight:bold;">${mData.key.label}</div>` : ''}
+                    <div>
+                        <div class="day-sun-info font-mono">Duration of Sunlight: ${sunData.duration}</div>
+                        <div><span class="day-greg-overlay font-mono">${gregObj.label}</span></div>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    function inspectDay(day, arc, theta, gregDate, sunrise, sunset, duration) {
+        const qData = HELIOTERRAN_DATA[currentQ];
+        const mData = qData.months[currentM];
+
+        document.getElementById('modal-title').innerText = `Day ${day} Coordinates Breakdown`;
+        document.getElementById('modal-quarter-info').innerText = `${qData.label} — ${qData.name}`;
+        document.getElementById('modal-month-info').innerText = `Month ${currentM + 1} (${mData.name})`;
+
+        document.getElementById('modal-lambda').innerText = `\u03BB ${arc}\u00B0`;
+        document.getElementById('modal-theta').innerText = `\u03B8_L ${theta}\u00B0`;
+        document.getElementById('modal-sunrise').innerText = sunrise;
+        document.getElementById('modal-sunset').innerText = sunset;
+        document.getElementById('modal-daylight').innerText = duration;
+        document.getElementById('modal-greg').innerText = `${gregDate} (Gregorian Civil)`;
+        document.getElementById('day-modal').classList.remove('hidden');
+    }
+
+    function closeDayModal() { document.getElementById('day-modal').classList.add('hidden'); }
+    function openPhiModal() { document.getElementById('phi-modal').classList.remove('hidden'); }
+    function closePhiModal() { document.getElementById('phi-modal').classList.add('hidden'); }
+
+    function updateTicker() {
+        const date = new Date(selectedYear, 4, 5);
+        const lambda = calculateSolarLongitudeForDate(date);
+        const theta = calculateLunarPhaseAngleForDate(date);
+
+        document.getElementById('ticker-lambda').innerText = `\u03BB = ${lambda.toFixed(2)}\u00B0`;
+        document.getElementById('ticker-theta').innerText = `\u03B8_L = ${theta.toFixed(1)}\u00B0`;
+    }
+
+    updateQuarterRanges();
+    selectQuarter(1);
+    updateTicker();
+</script>
+</body>
+</html>
