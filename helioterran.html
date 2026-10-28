@@ -374,13 +374,11 @@
         return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
     }
 
-    // High-Precision NOAA Solar Calculator with Equation of Time & Local Timezone Output
     function calculateSunriseSunset(date, lat, lng) {
         const startOfYear = new Date(date.getFullYear(), 0, 0);
         const diff = date - startOfYear;
         const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-        // 1. Solar Declination & Equation of Time (EoT)
         const gamma = (2 * Math.PI / 365) * (dayOfYear - 1);
         const declination = 23.45 * Math.sin((360 / 365) * (dayOfYear - 81) * (Math.PI / 180));
         
@@ -390,7 +388,6 @@
         const latRad = lat * (Math.PI / 180);
         const decRad = declination * (Math.PI / 180);
 
-        // 2. Hour Angle for standard solar zenith (90.833° accounts for atmospheric refraction)
         const cosHourAngle = (Math.cos(90.833 * Math.PI / 180) - (Math.sin(latRad) * Math.sin(decRad))) / (Math.cos(latRad) * Math.cos(decRad));
         
         if (cosHourAngle > 1) return { sunrise: "Polar Night", sunset: "Polar Night", duration: "0h 0m" };
@@ -399,10 +396,7 @@
         const hourAngle = Math.acos(cosHourAngle) * (180 / Math.PI);
         const daylightHours = (2 * hourAngle) / 15;
 
-        // 3. True Solar Noon in UTC minutes
         const solarNoonUTC = 720 - (4 * lng) - eqTime;
-
-        // 4. Convert UTC minutes to Local Civil Clock Minutes using browser timezone offset
         const localNoonMinutes = solarNoonUTC - date.getTimezoneOffset();
 
         const sunriseMinutes = localNoonMinutes - (hourAngle * 4);
@@ -439,12 +433,15 @@
         }
     }
 
-    function getGregorianOverlayObj(monthData, day, year) {
+    function getGregorianOverlayObj(monthData, day, year, qVal, mVal) {
         const monthsList = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         const daysInMonth = [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
         
+        let activeQ = qVal !== undefined ? qVal : currentQ;
+        let activeM = mVal !== undefined ? mVal : currentM;
+
         let mIdx = monthData.gregMonth;
-        let yOffset = (currentQ === 3 && currentM === 2) || currentQ === 4 ? (monthData.gregMonth <= 3 ? 1 : 0) : 0;
+        let yOffset = (activeQ === 3 && activeM === 2) || activeQ === 4 ? (monthData.gregMonth <= 3 ? 1 : 0) : 0;
         let targetYear = year + yOffset;
         let calcDay = monthData.startDay + (day - 1);
 
@@ -469,20 +466,20 @@
     }
 
     function updateQuarterRanges() {
-        const q1Start = getGregorianOverlayObj(HELIOTERRAN_DATA[1].months[0], 1, selectedYear);
-        const q1End = getGregorianOverlayObj(HELIOTERRAN_DATA[1].months[2], 32, selectedYear);
+        const q1Start = getGregorianOverlayObj(HELIOTERRAN_DATA[1].months[0], 1, selectedYear, 1, 0);
+        const q1End = getGregorianOverlayObj(HELIOTERRAN_DATA[1].months[2], 32, selectedYear, 1, 2);
         document.getElementById('q1-greg-range').innerText = `${q1Start.dayNum}${q1Start.monthNameUpper}${q1Start.targetYear} - ${q1End.dayNum}${q1End.monthNameUpper}${q1End.targetYear}`;
 
-        const q2Start = getGregorianOverlayObj(HELIOTERRAN_DATA[2].months[0], 1, selectedYear);
-        const q2End = getGregorianOverlayObj(HELIOTERRAN_DATA[2].months[2], 31, selectedYear);
+        const q2Start = getGregorianOverlayObj(HELIOTERRAN_DATA[2].months[0], 1, selectedYear, 2, 0);
+        const q2End = getGregorianOverlayObj(HELIOTERRAN_DATA[2].months[2], 31, selectedYear, 2, 2);
         document.getElementById('q2-greg-range').innerText = `${q2Start.dayNum}${q2Start.monthNameUpper}${q2Start.targetYear} - ${q2End.dayNum}${q2End.monthNameUpper}${q2End.targetYear}`;
 
-        const q3Start = getGregorianOverlayObj(HELIOTERRAN_DATA[3].months[0], 1, selectedYear);
-        const q3End = getGregorianOverlayObj(HELIOTERRAN_DATA[3].months[2], 30, selectedYear);
+        const q3Start = getGregorianOverlayObj(HELIOTERRAN_DATA[3].months[0], 1, selectedYear, 3, 0);
+        const q3End = getGregorianOverlayObj(HELIOTERRAN_DATA[3].months[2], 30, selectedYear, 3, 2);
         document.getElementById('q3-greg-range').innerText = `${q3Start.dayNum}${q3Start.monthNameUpper}${q3Start.targetYear} - ${q3End.dayNum}${q3End.monthNameUpper}${q3End.targetYear}`;
 
-        const q4Start = getGregorianOverlayObj(HELIOTERRAN_DATA[4].months[0], 1, selectedYear);
-        const q4End = getGregorianOverlayObj(HELIOTERRAN_DATA[4].months[2], 30, selectedYear);
+        const q4Start = getGregorianOverlayObj(HELIOTERRAN_DATA[4].months[0], 1, selectedYear, 4, 0);
+        const q4End = getGregorianOverlayObj(HELIOTERRAN_DATA[4].months[2], 30, selectedYear, 4, 2);
         document.getElementById('q4-greg-range').innerText = `${q4Start.dayNum}${q4Start.monthNameUpper}${q4Start.targetYear} - ${q4End.dayNum}${q4End.monthNameUpper}${q4End.targetYear}`;
     }
 
@@ -617,22 +614,21 @@
         selectedYear = today.getFullYear();
         document.getElementById('year-input').value = selectedYear;
 
-        let matchedQ = 1;
-        let matchedM = 0;
+        let matchedQ = 2; // Default to Quarter 2 (Preparation)
+        let matchedM = 2; // Default to Month 3
 
-        // Loop quarters/months to match current date window
+        const todayTime = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+
         for (let q = 1; q <= 4; q++) {
             for (let mIdx = 0; mIdx < HELIOTERRAN_DATA[q].months.length; mIdx++) {
                 const mData = HELIOTERRAN_DATA[q].months[mIdx];
-                const startObj = getGregorianOverlayObj(mData, 1, selectedYear);
-                const endObj = getGregorianOverlayObj(mData, mData.days, selectedYear);
+                const startObj = getGregorianOverlayObj(mData, 1, selectedYear, q, mIdx);
+                const endObj = getGregorianOverlayObj(mData, mData.days, selectedYear, q, mIdx);
                 
-                // Truncate hours/mins/secs to compare exact midnight dates
-                const todayMid = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-                const startMid = new Date(startObj.dateObj.getFullYear(), startObj.dateObj.getMonth(), startObj.dateObj.getDate());
-                const endMid = new Date(endObj.dateObj.getFullYear(), endObj.dateObj.getMonth(), endObj.dateObj.getDate());
+                const startTime = new Date(startObj.dateObj.getFullYear(), startObj.dateObj.getMonth(), startObj.dateObj.getDate()).getTime();
+                const endTime = new Date(endObj.dateObj.getFullYear(), endObj.dateObj.getMonth(), endObj.dateObj.getDate()).getTime();
 
-                if (todayMid >= startMid && todayMid <= endMid) {
+                if (todayTime >= startTime && todayTime <= endTime) {
                     matchedQ = q;
                     matchedM = mIdx;
                     break;
@@ -657,7 +653,6 @@
         updateTicker();
     }
 
-    // Run dynamic date setup on load
     initToCurrentDate();
 </script>
 </body>
