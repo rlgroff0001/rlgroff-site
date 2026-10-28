@@ -365,7 +365,7 @@
 
     let currentQ = 1;
     let currentM = 0;
-    let selectedYear = 2026;
+    let selectedYear = new Date().getFullYear();
     let userLat = 0.0;
     let userLng = 0.0;
     let hasCustomLocation = false;
@@ -604,7 +604,7 @@
     function closePhiModal() { document.getElementById('phi-modal').classList.add('hidden'); }
 
     function updateTicker() {
-        const date = new Date(selectedYear, 4, 5);
+        const date = new Date();
         const lambda = calculateSolarLongitudeForDate(date);
         const theta = calculateLunarPhaseAngleForDate(date);
 
@@ -612,9 +612,53 @@
         document.getElementById('ticker-theta').innerText = `\u03B8_L = ${theta.toFixed(1)}\u00B0`;
     }
 
-    updateQuarterRanges();
-    selectQuarter(1);
-    updateTicker();
+    function initToCurrentDate() {
+        const today = new Date();
+        selectedYear = today.getFullYear();
+        document.getElementById('year-input').value = selectedYear;
+
+        let matchedQ = 1;
+        let matchedM = 0;
+
+        // Loop quarters/months to match current date window
+        for (let q = 1; q <= 4; q++) {
+            for (let mIdx = 0; mIdx < HELIOTERRAN_DATA[q].months.length; mIdx++) {
+                const mData = HELIOTERRAN_DATA[q].months[mIdx];
+                const startObj = getGregorianOverlayObj(mData, 1, selectedYear);
+                const endObj = getGregorianOverlayObj(mData, mData.days, selectedYear);
+                
+                // Truncate hours/mins/secs to compare exact midnight dates
+                const todayMid = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                const startMid = new Date(startObj.dateObj.getFullYear(), startObj.dateObj.getMonth(), startObj.dateObj.getDate());
+                const endMid = new Date(endObj.dateObj.getFullYear(), endObj.dateObj.getMonth(), endObj.dateObj.getDate());
+
+                if (todayMid >= startMid && todayMid <= endMid) {
+                    matchedQ = q;
+                    matchedM = mIdx;
+                    break;
+                }
+            }
+        }
+
+        currentQ = matchedQ;
+        currentM = matchedM;
+        document.body.className = HELIOTERRAN_DATA[matchedQ].theme;
+
+        updateQuarterRanges();
+
+        [1, 2, 3, 4].forEach(i => {
+            const btn = document.getElementById(`q${i}-btn`);
+            if (i === matchedQ) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+
+        renderMonthTabs();
+        renderCalendar();
+        updateTicker();
+    }
+
+    // Run dynamic date setup on load
+    initToCurrentDate();
 </script>
 </body>
 </html>
