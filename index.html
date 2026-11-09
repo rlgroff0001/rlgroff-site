@@ -1,577 +1,584 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R.L. GROFF – Author, Social Scientist, Teacher, Believer</title>
-
-
-
-<style>
-    /* Permanent dark theme palette */
-    :root {
-        --bg-color: #12100f;        /* deep espresso */
-        --text-color: #f2e9d8;      /* warm parchment */
-        --accent-color: #c8a96b;    /* antique gold */
-        --header-bg: #1a1412;       /* dark mahogany */
-        --muted-bg: #2a221d;        /* warm umber */
-        --card-bg: #1e1a17;         /* aged leather */
-    }
-
-    body {
-        margin: 0;
-        font-family: "Georgia", serif;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        line-height: 1.7;
-    }
-
-    header {
-        background: var(--header-bg);
-        color: var(--text-color);
-        padding: 40px 20px 30px;
-        text-align: center;
-        border-bottom: 6px solid var(--accent-color);
-        position: relative;
-        overflow: hidden;
-    }
-
-    header h1 {
-        font-size: 3rem;
-        margin: 0 0 10px;
-        letter-spacing: 2px;
-    }
-
-    header p {
-        margin: 0;
-        font-style: italic;
-    }
-
-    /* Header motif using favicon image */
-.header-motif {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    border: 2px solid rgba(200, 169, 107, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.25;
-    pointer-events: none;
-    z-index: 5;
-}
-
-.motif-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 0.45;
-}
-
-
-    /* Ribbon motif */
-    .header-ribbon {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 26px;
-        background: linear-gradient(
-            to right,
-            #b08b5a,
-            #f3e2c7,
-            #b08b5a
-        );
-        opacity: 0.25;
-        pointer-events: none;
-    }
-
-    nav {
-        background: var(--muted-bg);
-        padding: 10px;
-        text-align: center;
-        border-bottom: 1px solid var(--accent-color);
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-
-    nav a {
-        margin: 0 15px;
-        text-decoration: none;
-        color: var(--text-color);
-        font-weight: bold;
-        font-size: 1.05rem;
-    }
-
-    nav a:hover {
-        text-decoration: underline;
-    }
-
-    section {
-        max-width: 1000px;
-        margin: 50px auto;
-        padding: 0 20px;
-    }
-
-    h2 {
-        font-size: 2rem;
-        border-bottom: 2px solid var(--accent-color);
-        padding-bottom: 5px;
-        margin-bottom: 20px;
-    }
-
-    .two-column {
-        display: grid;
-        grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
-        gap: 30px;
-    }
-
-    .book-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 24px;
-    }
-
-    .card {
-        background: var(--card-bg);
-        padding: 20px;
-        border: 1px solid var(--accent-color);
-        border-radius: 4px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.35);
-    }
-
-    .book-cover {
-        width: 100%;
-        max-height: 320px;
-        object-fit: auto;
-        border-radius: 4px;
-        margin-bottom: 12px;
-        border: 1px solid var(--accent-color);
-    }
-
-    .book-meta {
-        font-size: 0.9rem;
-        font-style: italic;
-        color: #d0c1ad;
-    }
-
-    .blog-entry {
-        margin-bottom: 18px;
-    }
-
-    .blog-entry-title {
-        font-weight: bold;
-    }
-
-    .blog-entry-date {
-        font-size: 0.85rem;
-        font-style: italic;
-        color: #cfbda0;
-    }
-
-    ul {
-        padding-left: 18px;
-    }
-
-    input[type="email"],
-    input[type="text"] {
-        font-family: "Georgia", serif;
-        padding: 8px 10px;
-        border-radius: 3px;
-        border: 1px solid var(--accent-color);
-        background: #1b1816;
-        color: var(--text-color);
-        width: 100%;
-        max-width: 320px;
-    }
-
-    button {
-        padding: 8px 18px;
-        border-radius: 20px;
-        border: none;
-        background: var(--accent-color);
-        color: #1a1412;
-        font-family: "Georgia", serif;
-        cursor: pointer;
-    }
-
-    button:hover {
-        opacity: 0.9;
-    }
-
-    footer {
-        background: var(--header-bg);
-        color: var(--text-color);
-        text-align: center;
-        padding: 30px;
-        margin-top: 60px;
-        border-top: 6px solid var(--accent-color);
-        font-size: 0.9rem;
-    }
-
-    @media (max-width: 800px) {
-        .two-column {
-            grid-template-columns: 1fr;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Forge | Men's Christian Mentorship Initiative</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forge: {
+                            900: '#0b0d10',
+                            800: '#12151c',
+                            700: '#1b202a',
+                            600: '#282f3e',
+                            amber: '#d97706',
+                            amberGlow: '#f59e0b',
+                            amberBright: '#fbbf24',
+                            slateAccent: '#3b82f6',
+                            muted: '#94a3b8'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Cinzel', 'serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
         }
-        header h1 {
-            font-size: 2.2rem;
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0d10;
+            color: #f1f5f9;
         }
-    }
-</style>
+        .heading-font {
+            font-family: 'Cinzel', serif;
+        }
+        .glow-amber {
+            box-shadow: 0 0 35px -5px rgba(217, 119, 6, 0.35);
+        }
+        .text-glow {
+            text-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+        }
+        .bg-radial-forge {
+            background: radial-gradient(circle at 50% 20%, rgba(217, 119, 6, 0.15) 0%, rgba(11, 13, 16, 1) 70%);
+        }
+    </style>
 </head>
+<body class="bg-forge-900 text-slate-100 antialiased selection:bg-forge-amber selection:text-forge-900">
 
-<body>
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-forge-900/90 backdrop-blur-md border-b border-forge-700/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded bg-gradient-to-br from-forge-amber to-amber-800 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                        <i data-lucide="flame" class="w-6 h-6 text-forge-900"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="heading-font text-xl font-bold tracking-wider text-white group-hover:text-forge-amberGlow transition-colors">THE FORGE</span>
+                        <span class="text-[10px] tracking-widest text-forge-muted uppercase font-semibold">Mentorship Initiative</span>
+                    </div>
+                </a>
 
-<header id="home">
-    <div class="header-motif">
-        <img src="favicon.png" alt="Compass motif" class="motif-image">
-    </div>
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                    <a href="#about-groff" class="text-slate-300 hover:text-forge-amberGlow transition-colors">About</a>
+                    <a href="#how-it-works" class="text-slate-300 hover:text-forge-amberGlow transition-colors">How It Works</a>
+                    <a href="#pillars" class="text-slate-300 hover:text-forge-amberGlow transition-colors">Core Pillars</a>
+                </nav>
 
-    <div class="header-ribbon"></div>
+                <!-- Header CTA Button -->
+                <div class="hidden sm:flex items-center gap-4">
+                    <a href="#framework" class="px-5 py-2.5 rounded text-xs uppercase tracking-wider font-bold bg-gradient-to-r from-forge-amber to-forge-amberGlow text-forge-900 hover:brightness-110 transition-all shadow-md">
+                        Apply Now
+                    </a>
+                </div>
 
-    <h1 style="text-align: center;">R. L. GROFF</h1>
-    <h2 style="text-align: center; font-weight: normal;">
-        Author · Social Scientist · Teacher · Believer
-    </h2>
-    <p style="text-align: center;">
-        Illuminating the quiet intersections of faith, truth, and the unseen currents of the human soul.
-    </p>
-</header>
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white p-2">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-<nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#books">Books</a>
-    <a href="#speaking">Speaking &amp; Teaching</a>
-    <a href="#blog">Blog</a>
-    <a href="#newsletter">Newsletter</a>
-    <a href="#contact">Contact</a>
-</nav>
-
-
-<section id="about">
-  <h2>About the Author</h2>
-
-  <div class="two-column" style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
-
-    <!-- Left Column: Full Bio -->
-    <div style="flex: 2; min-width: 280px;">
-      <p>
-        I am a retired U.S. Army Colonel, author, social scientist,
-        college professor and follower of Christ. Over the course of my career I served
-        as a strategic leader, researcher, and mentor, helping others think clearly
-        about stewardship, responsibility, and the quiet weight of leadership and command.
-      </p>
-      <p>
-        My academic work includes a Bachelor of Science in Business from The Ohio State University,
-        a Master of Science in Business from Central Michigan University, and doctoral candidacy (ABD) in
-        health administration, also from Central Michigan University. I now write at the intersection of faith, 
-		lived experiences, moral courage, and the unseen spiritual realities that press in on everyday life.
-      </p>
-      <p>
-        On the page, I am drawn to contemplative endings, open questions, and stories that invite
-        readers back to Scripture, prayer, and reflection - long after the final chapter closes.
-      </p>
-    </div>
-
-    <!-- Right Column: Summary + Photo at the Bottom -->
-    <div style="flex: 1; min-width: 220px;">
-      <h3>At a Glance</h3>
-      <ul style="list-style-type: none; padding-left: 0; margin: 0 0 1.5rem 0;">
-        <li><strong>Background:</strong> Retired U.S. Army Colonel</li>
-        <li><strong>Vocation:</strong> Author, teacher, social scientist, believer</li>
-        <li><strong>Themes:</strong> Faith, truth, spiritual warfare, stewardship, leadership</li>
-        <li><strong>Teaching:</strong> Stategic management, leadership, ethics</li>
-        <li><strong>Passion:</strong> Reflections that disturb complacency and stir deep thought</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<section id="books">
-    <h2>Books</h2>
-    <div class="book-grid">
-
-        <!-- Where Light Collides -->
-        <div class="card">
-            <img src="cover-where-light-collides1.png" alt="Cover of Where Light Collides" class="book-cover">
-            <h3>Where Light Collides</h3>
-            <p class="book-meta">Christian Hope · Contemplative</p>
-            <p>
-                A quiet, searching novel that follows a wounded Soldier colliding with faith, loss, 
-                and the haunting sense that God may be much nearer than he imagines. Through moments of silence, memory, 
-                and fragile hope, this story explores the pressing light of grace and invites reflection long 
-                after the final page is turned.
-            </p>
-            <a href="https://www.amazon.com/dp/B0GDQDXRNP" target="_blank">
-                <button>Buy on Amazon</button>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-forge-800 border-b border-forge-700 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about-groff" class="block text-slate-300 hover:text-forge-amber py-2">About</a>
+            <a href="#how-it-works" class="block text-slate-300 hover:text-forge-amber py-2">How It Works</a>
+            <a href="#pillars" class="block text-slate-300 hover:text-forge-amber py-2">Core Pillars</a>
+            <a href="#framework" class="block w-full text-center mt-2 px-5 py-3 rounded text-xs uppercase tracking-wider font-bold bg-forge-amber text-forge-900">
+                Apply as Mentor / Mentee
             </a>
         </div>
+    </header>
 
-        <!-- The Azazel Codex -->
-        <div class="card">
-            <img src="cover-the-azazel-codex1.png" alt="Cover of The Azazel Codex" class="book-cover">
-            <h3>The Azazel Codex</h3>
-            <p class="book-meta">Spiritual Horror · Supernatural</p>
-            <p>
-                An ancient name, a forbidden text, and a modern age that has forgotten
-                the lethality of spiritual conflict. <em>The Azazel Codex</em> weaves theology 
-                and suspense to confront readers with what is really at stake in the 
-                unseen realm; a shadow that lingers, challenging everything you think you know about
-                spiritual warfare.
-            </p>
-            <a href="https://www.amazon.com/dp/B0GG3HRY62" target="_blank">
-                <button>Buy on Amazon</button>
-            </a>
+    <!-- Main Content Container -->
+    <main class="pt-20">
+
+        <!-- HERO SECTION -->
+        <section class="relative min-h-[90vh] flex items-center justify-center bg-radial-forge overflow-hidden py-20 px-4">
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,#1b202a_1px,transparent_1px),linear-gradient(to_bottom,#1b202a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] opacity-30"></div>
+            
+            <div class="relative max-w-5xl mx-auto text-center z-10 space-y-8">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-forge-amber/40 bg-forge-800/80 text-forge-amberGlow text-xs font-semibold tracking-wider uppercase backdrop-blur-sm">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i> Cohort Applications Now Open
+                </div>
+
+                <h1 class="heading-font text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-tight">
+                    AS IRON SHARPENS IRON,<br class="hidden sm:inline"/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-forge-amberBright via-forge-amber to-amber-700 text-glow">
+                        SO ONE MAN SHARPENS ANOTHER
+                    </span>
+                </h1>
+
+                <p class="max-w-3xl mx-auto text-lg sm:text-xl text-slate-300 font-normal leading-relaxed">
+                    The Forge is an intentional, battle-tested Christian mentorship framework designed to forge men into faithful stewards, strategic leaders, and resilient spiritual warriors.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="#framework" class="w-full sm:w-auto px-8 py-4 rounded text-sm font-bold tracking-widest uppercase bg-gradient-to-r from-forge-amber to-forge-amberGlow text-forge-900 hover:scale-105 transition-all glow-amber shadow-lg">
+                        Apply for Cohort 1
+                    </a>
+                    <a href="#how-it-works" class="w-full sm:w-auto px-8 py-4 rounded text-sm font-bold tracking-widest uppercase bg-forge-800 border border-forge-700 hover:border-forge-amber text-slate-200 hover:text-white transition-all">
+                        Explore Framework
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-16 border-t border-forge-700/50 max-w-4xl mx-auto text-left">
+                    <div class="p-4 bg-forge-800/40 rounded border border-forge-700/40">
+                        <div class="heading-font text-2xl font-bold text-forge-amber">9 Weeks</div>
+                        <div class="text-xs text-forge-muted mt-1 uppercase tracking-wide">Structured Crucible</div>
+                    </div>
+                    <div class="p-4 bg-forge-800/40 rounded border border-forge-700/40">
+                        <div class="heading-font text-2xl font-bold text-forge-amber">One-to-One</div>
+                        <div class="text-xs text-forge-muted mt-1 uppercase tracking-wide">High-Vulnerability Model</div>
+                    </div>
+                    <div class="p-4 bg-forge-800/40 rounded border border-forge-700/40">
+                        <div class="heading-font text-2xl font-bold text-forge-amber">Strategic</div>
+                        <div class="text-xs text-forge-muted mt-1 uppercase tracking-wide">Military Leadership Roots</div>
+                    </div>
+                    <div class="p-4 bg-forge-800/40 rounded border border-forge-700/40">
+                        <div class="heading-font text-2xl font-bold text-forge-amber">Routine</div>
+                        <div class="text-xs text-forge-muted mt-1 uppercase tracking-wide">Accountability Check-Ins</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CORE PILLARS SECTION -->
+        <section id="pillars" class="py-24 bg-forge-800/40 border-y border-forge-700/50 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-forge-amber">Built for Strength & Stewardship</h2>
+                    <h3 class="heading-font text-3xl sm:text-4xl font-bold text-white">THE THREE PILLARS OF THE FORGE</h3>
+                    <p class="text-slate-400">Men aren't formed in isolation. They are tempered under intentional pressure, biblical alignment, and strategic accountability.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Pillar 1 -->
+                    <div class="p-8 rounded-lg bg-forge-800 border border-forge-700 hover:border-forge-amber/60 transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-md bg-forge-700/70 border border-forge-600 flex items-center justify-center text-forge-amber mb-6 group-hover:bg-forge-amber group-hover:text-forge-900 transition-colors">
+                                <i data-lucide="cross" class="w-7 h-7"></i>
+                            </div>
+                            <h4 class="heading-font text-xl font-bold text-white mb-3">Biblical Stewardship & Vocation</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Reframing your career, family, finances, and influence not as personal possessions, but as sacred trusts granted by God to be strategically managed for His Kingdom.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-slate-300 pt-4 border-t border-forge-700">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-forge-amber"></i> Kingdom Vocation Mapping</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-forge-amber"></i> Spiritual Warfare Preparedness</li>
+                        </ul>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="p-8 rounded-lg bg-forge-800 border border-forge-700 hover:border-forge-amber/60 transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-md bg-forge-700/70 border border-forge-600 flex items-center justify-center text-forge-amber mb-6 group-hover:bg-forge-amber group-hover:text-forge-900 transition-colors">
+                                <i data-lucide="swords" class="w-7 h-7"></i>
+                            </div>
+                            <h4 class="heading-font text-xl font-bold text-white mb-3">Tactical One-to-One Accountability</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Direct, high-trust mentor and mentee pairing. No passive consumption—only brutal honesty, shared prayer logs, purity accountability, and actionable weekly goals.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-slate-300 pt-4 border-t border-forge-700">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-forge-amber"></i> Daily Habit & Prayer Tracking</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-forge-amber"></i> Direct Unfiltered Feedback</li>
+                        </ul>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="p-8 rounded-lg bg-forge-800 border border-forge-700 hover:border-forge-amber/60 transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-md bg-forge-700/70 border border-forge-600 flex items-center justify-center text-forge-amber mb-6 group-hover:bg-forge-amber group-hover:text-forge-900 transition-colors">
+                                <i data-lucide="compass" class="w-7 h-7"></i>
+                            </div>
+                            <h4 class="heading-font text-xl font-bold text-white mb-3">Battle-Tested Leadership</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Drawing upon military command principles, social science research, and deep theological reflection to build men who remain steady in times of cultural shift and trial.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-slate-300 pt-4 border-t border-forge-700">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-forge-amber"></i> Command Discipline & Ethics</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-forge-amber"></i> Generational Impact Focus</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE FRAMEWORK & HOW IT WORKS -->
+        <section id="how-it-works" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-forge-amber">The Mentorship Roadmap</h2>
+                <h3 class="heading-font text-3xl sm:text-4xl font-bold text-white">HOW THE FORGE OPERATES</h3>
+                <p class="text-slate-400">A structured process designed for busy men who require depth, clarity, and accountability.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- STEP 1: MATCHING & VETTING -->
+                <div class="relative col-span-1 space-y-4">
+                    <div onclick="toggleStep1Drawer()" class="cursor-pointer bg-forge-800/80 p-8 rounded-lg border border-forge-700/60 hover:border-forge-amber transition-all duration-300 space-y-4 shadow-lg group">
+                        <div class="flex items-center justify-between">
+                            <span class="heading-font text-4xl font-black text-forge-amber">01</span>
+                            <span id="step1-badge" class="text-[10px] font-bold uppercase tracking-wider text-forge-amber bg-forge-amber/10 px-2.5 py-1 rounded group-hover:bg-forge-amber group-hover:text-forge-900 transition-all">
+                                + Discernment Process
+                            </span>
+                        </div>
+                        <h4 class="heading-font text-xl font-bold text-white group-hover:text-forge-amber transition-colors">Matching & Vetting</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Applications pair an <strong>Iron</strong> (Mentee) with a tested <strong>Anvil</strong> (Mentor) based on life stage and spiritual goals—preparing both to yield to the work of the <strong>Smith</strong>.
+                        </p>
+                        <a href="#framework" onclick="event.stopPropagation();" class="inline-block w-full text-center py-2.5 px-4 rounded font-bold text-xs uppercase tracking-wider bg-forge-amber/10 text-forge-amber border border-forge-amber/40 hover:bg-forge-amber hover:text-forge-900 transition-all">
+                            Apply as Iron or Anvil &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Step 1 Expandable Drawer -->
+                    <div id="step1-drawer" style="display: none;" class="mt-4 bg-forge-900/95 border border-forge-amber/40 rounded-xl p-6 shadow-2xl transition-all">
+                        <div class="flex items-center justify-between mb-4 pb-3 border-b border-forge-700">
+                            <h5 class="heading-font text-base font-bold text-white">THE PAIRING COVENANT</h5>
+                            <button type="button" onclick="toggleStep1Drawer()" class="text-xs font-bold uppercase text-slate-400 hover:text-forge-amber">✕ Close</button>
+                        </div>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-start gap-2"><span class="text-forge-amber font-bold">1.</span> <span><strong>The Iron (Mentee):</strong> A man entering the heat, dropping passivity, and yielding to spiritual growth.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-forge-amber font-bold">2.</span> <span><strong>The Anvil (Mentor):</strong> A tested leader offering a firm, unyielding foundation of truth and scripture.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-forge-amber font-bold">3.</span> <span><strong>Discernment:</strong> Matched intentionally by vocation, spiritual season, and weekly availability.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-forge-amber font-bold">4.</span> <span><strong>The Covenant:</strong> Strict mutual confidentiality, punctuality, and non-negotiable readiness.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- STEP 2: 9-WEEK GUIDED CRUCIBLE -->
+                <div class="relative col-span-1 space-y-4">
+                    <div onclick="toggleStep2Curriculum()" class="cursor-pointer bg-forge-800/80 p-8 rounded-lg border border-forge-700/60 hover:border-forge-amber transition-all duration-300 space-y-4 shadow-lg group">
+                        <div class="flex items-center justify-between">
+                            <span class="heading-font text-4xl font-black text-forge-amber">02</span>
+                            <span id="step2-chevron" class="text-[10px] font-bold uppercase tracking-wider text-forge-amber bg-forge-amber/10 px-2.5 py-1 rounded group-hover:bg-forge-amber group-hover:text-forge-900 transition-all">
+                                + View 9-Week Breakdown
+                            </span>
+                        </div>
+                        <h4 class="heading-font text-xl font-bold text-white group-hover:text-forge-amber transition-colors">9-Week Guided Crucible</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Execute a weekly curriculum focused on military-grade discipline, biblical stewardship, emotional resilience, and armor for spiritual warfare.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 Expandable Drawer -->
+                    <div id="step2-curriculum-drawer" style="display: none;" class="mt-4 bg-forge-900/95 border border-forge-amber/40 rounded-xl p-6 shadow-2xl transition-all">
+                        <div class="flex items-center justify-between mb-6 pb-3 border-b border-forge-700">
+                            <div>
+                                <span class="text-[10px] font-bold tracking-widest text-forge-amber uppercase">BetterMan Aligned Discipleship</span>
+                                <h5 class="heading-font text-lg font-bold text-white">THE 9-WEEK ROADMAP</h5>
+                            </div>
+                            <button type="button" onclick="toggleStep2Curriculum()" class="text-xs font-bold uppercase text-slate-400 hover:text-forge-amber">✕ Close</button>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- Phase 1 -->
+                            <div class="bg-forge-950/80 border border-forge-800 rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-forge-amber bg-forge-amber/10 px-2 py-0.5 rounded">Phase 1</span>
+                                    <span class="text-[10px] text-slate-400 font-mono">Weeks 1–3</span>
+                                </div>
+                                <h6 class="heading-font text-sm font-bold text-white mb-1">Real Manhood</h6>
+                                <ul class="space-y-2 text-xs text-slate-300 mt-2">
+                                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W1:</span> <span><strong>Rejecting Passivity:</strong> Stepping out of spiritual complacency.</span></li>
+                                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W2:</span> <span><strong>Accepting Responsibility:</strong> Owning leadership in heart, home, & church.</span></li>
+                                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W3:</span> <span><strong>Leading Courageously:</strong> Eternal reward over cultural approval.</span></li>
+                                </ul>
+                            </div>
+
+                            <!-- Phase 2 -->
+                            <div class="bg-forge-950/80 border border-forge-800 rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-forge-amber bg-forge-amber/10 px-2 py-0.5 rounded">Phase 2</span>
+                                    <span class="text-[10px] text-slate-400 font-mono">Weeks 4–6</span>
+                                </div>
+                                <h6 class="heading-font text-sm font-bold text-white mb-1">The Battle & The Heart</h6>
+                                <ul class="space-y-2 text-xs text-slate-300 mt-2">
+                                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W4:</span> <span><strong>Identity & Wounds:</strong> Addressing past hurts to lead with humility.</span></li>
+                                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W5:</span> <span><strong>Purity & Integrity:</strong> Establishing ironclad personal accountability.</span></li>
+                                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W6:</span> <span><strong>Relational Leadership:</strong> Loving selflessly in marriage & family.</span></li>
+                                </ul>
+                            </div>
+
+                            <!-- Phase 3 -->
+                            <div class="bg-forge-950/80 border border-forge-800 rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-forge-amber bg-forge-amber/10 px-2 py-0.5 rounded">Phase 3</span>
+                                    <span class="text-[10px] text-slate-400 font-mono">Weeks 7–9</span>
+                                </div>
+                                <h6 class="heading-font text-sm font-bold text-white mb-1">Mission & Deployment</h6>
+                                <ul class="space-y-2 text-xs text-slate-300 mt-2">
+                                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W7:</span> <span><strong>Vocation as Worship:</strong> Aligning work with kingdom stewardship.</span></li>
+                                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W8:</span> <span><strong>Spiritual Warfare:</strong> Recognizing tactics of enemy opposition.</span></li>
+                                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W9:</span> <span><strong>Commissioning:</strong> Completing the cohort and mentoring another.</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3: RHYTHM OF ACCOUNTABILITY -->
+                <div class="relative col-span-1 space-y-4">
+                    <div onclick="toggleStep3Drawer()" class="cursor-pointer bg-forge-800/80 p-8 rounded-lg border border-forge-700/60 hover:border-forge-amber transition-all duration-300 space-y-4 shadow-lg group">
+                        <div class="flex items-center justify-between">
+                            <span class="heading-font text-4xl font-black text-forge-amber">03</span>
+                            <span id="step3-badge" class="text-[10px] font-bold uppercase tracking-wider text-forge-amber bg-forge-amber/10 px-2.5 py-1 rounded group-hover:bg-forge-amber group-hover:text-forge-900 transition-all">
+                                + Battle Rhythm
+                            </span>
+                        </div>
+                        <h4 class="heading-font text-xl font-bold text-white group-hover:text-forge-amber transition-colors">Rhythm of Accountability</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            A structured 90-minute weekly meeting where the Anvil and Iron meet under Scripture for transparent confession, prayer, and long-term deployment.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 Expandable Drawer -->
+                    <div id="step3-drawer" style="display: none;" class="mt-4 bg-forge-900/95 border border-forge-amber/40 rounded-xl p-6 shadow-2xl transition-all">
+                        <div class="flex items-center justify-between mb-4 pb-3 border-b border-forge-700">
+                            <h5 class="heading-font text-base font-bold text-white">90-MINUTE WEEKLY CADENCE</h5>
+                            <button type="button" onclick="toggleStep3Drawer()" class="text-xs font-bold uppercase text-slate-400 hover:text-forge-amber">✕ Close</button>
+                        </div>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-start gap-2"><span class="text-forge-amber font-bold">15 Min:</span> <span><strong>The Heat & Prayer:</strong> Grounding the session and bringing struggles into the light.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-forge-amber font-bold">45 Min:</span> <span><strong>The Striking:</strong> Deep-diving into the 9-week scripture framework and application.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-forge-amber font-bold">30 Min:</span> <span><strong>The Tempering:</strong> Transparent questioning on purity, family, and discipline.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-forge-amber font-bold">Deployment:</span> <span>Once shaped, the Iron eventually steps into place as an Anvil.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about-groff" class="py-24 bg-forge-800/60 border-t border-forge-700/60 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 relative">
+                        <div class="aspect-[4/5] rounded-xl bg-gradient-to-t from-forge-900 via-forge-800 to-forge-700 p-2 border border-forge-600/60 shadow-2xl overflow-hidden relative group">
+                            <img src="https://placehold.co/600x750/1b202a/d97706?text=FOUNDERS" 
+                                 alt="FOUNDERS" 
+                                 class="w-full h-full object-cover rounded-lg grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-forge-900 via-transparent to-transparent opacity-90"></div>
+                            <div class="absolute bottom-6 left-6 right-6 space-y-1">
+                                <div class="heading-font text-2xl font-bold text-white">BOWERS • FYLER • GROFF • MCCLAIN • TORKELSON</div>
+                                <div class="text-xs font-medium text-forge-amber uppercase tracking-wider">Servant Leaders • Authors • Business Owners • Husbands • Fathers</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-forge-amber">
+                            <i data-lucide="award" class="w-4 h-4"></i> The Founders' Vision
+                        </div>
+                        <h3 class="heading-font text-3xl sm:text-5xl font-bold text-white leading-tight">
+                            LEADERSHIP BORN IN THE FIRES OF DUTY & FAITH
+                        </h3>
+                        <p class="text-slate-300 leading-relaxed text-base">
+                            The founders of The Forge have spent decades developing frameworks for high-stakes servant leadership, organizational integrity, and family spiritual growth. Their work centers on a singular mission: restoring biblical stewardship and courageous manhood.
+                        </p>
+                        
+                        <blockquote class="p-4 border-l-2 border-forge-amber bg-forge-900/60 italic text-slate-200 text-sm">
+                            "True leadership is not about personal dominance; it is stewardship under God's authority. When light collides with darkness, men of faith must be prepared, tempered, and standing side by side."
+                        </blockquote>
+
+                        <div class="pt-4 grid grid-cols-2 gap-4 text-xs font-semibold uppercase tracking-wider text-slate-300">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="book-open" class="w-4 h-4 text-forge-amber"></i> Author of Where Light Collides
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="shield" class="w-4 h-4 text-forge-amber"></i> Servant Leadership Frameworks
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- APPLICATION & INTEREST FORM INLINE SECTION -->
+        <section id="framework" class="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-b from-forge-800 to-forge-900 border border-forge-amber/40 rounded-2xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-forge-amber/5 rounded-full filter blur-3xl pointer-events-none"></div>
+
+                <div class="text-center max-w-2xl mx-auto space-y-4 mb-10">
+                    <h3 class="heading-font text-3xl font-bold text-white">REQUEST AN INVITATION TO THE FORGE</h3>
+                    <p class="text-slate-300 text-sm">
+                        Applications are reviewed to ensure strong alignment between mentors and mentees. Select your intended role below to join Cohort 1.
+                    </p>
+                </div>
+
+                <form id="landing-apply-form" action="https://formspree.io/f/mrebgwjq" method="POST" class="space-y-6 max-w-xl mx-auto">
+                    <input type="hidden" name="_subject" value="New The Forge Application Received">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">First & Last Name</label>
+                            <input type="text" name="name" required placeholder="John Doe" class="w-full bg-forge-900 border border-forge-700 focus:border-forge-amber rounded px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-forge-amber">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Email Address</label>
+                            <input type="email" name="email" required placeholder="john@example.com" class="w-full bg-forge-900 border border-forge-700 focus:border-forge-amber rounded px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-forge-amber">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">I am applying to be a:</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="cursor-pointer border border-forge-700 bg-forge-900/50 p-4 rounded text-center hover:border-forge-amber has-[:checked]:border-forge-amber has-[:checked]:bg-forge-amber/10 transition-all">
+                                <input type="radio" name="role" value="Mentee (Iron)" checked class="hidden">
+                                <div class="font-bold text-sm text-white">Mentee (Iron)</div>
+                                <div class="text-[11px] text-slate-400 mt-1">Seeking growth & direction</div>
+                            </label>
+                            <label class="cursor-pointer border border-forge-700 bg-forge-900/50 p-4 rounded text-center hover:border-forge-amber has-[:checked]:border-forge-amber has-[:checked]:bg-forge-amber/10 transition-all">
+                                <input type="radio" name="role" value="Mentor (Anvil)" class="hidden">
+                                <div class="font-bold text-sm text-white">Mentor (Anvil)</div>
+                                <div class="text-[11px] text-slate-400 mt-1">Ready to invest in other men</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Brief Background & Mentorship Goals</label>
+                        <textarea name="background_and_goals" rows="3" placeholder="Tell us briefly about your current season of life, profession, and spiritual goals..." class="w-full bg-forge-900 border border-forge-700 focus:border-forge-amber rounded px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-forge-amber"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded font-bold uppercase tracking-widest text-xs bg-gradient-to-r from-forge-amber to-forge-amberGlow text-forge-900 hover:brightness-110 transition-all shadow-lg glow-amber">
+                        Submit Application
+                    </button>
+                    
+                    <div id="form-feedback" class="hidden text-center p-3 text-sm rounded font-medium"></div>
+
+                    <p class="text-center text-[11px] text-slate-500">
+                        Strict confidentiality maintained. We will reach out via email within 48 hours.
+                    </p>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-forge-950 border-t border-forge-800 py-12 text-center text-slate-500 text-xs space-y-4">
+        <div class="flex items-center justify-center gap-2">
+            <div class="w-6 h-6 rounded bg-forge-amber/20 flex items-center justify-center text-forge-amber">
+                <i data-lucide="flame" class="w-4 h-4"></i>
+            </div>
+            <span class="heading-font text-sm font-bold text-slate-300">THE FORGE</span>
         </div>
+        <p>&copy; The Forge Mentorship Initiative. All rights reserved.</p>
+    </footer>
 
-        <!-- The Liturgy of Water -->
-        <div class="card">
-            <img src="cover-liturgy-of-water3.png" alt="The Liturgy of Water" class="book-cover">
-            <h3>The Liturgy of Water</h3>
-            <p class="book-meta">Spiritual Journey for Truth</p>
-            <p>
-                The ontological mystery of water — older than light, deeper than belief. A father’s 
-                letters and a son’s resistance reveal what we inherit and what we must discover 
-                for ourselves. A meditation on origins and the depths beneath everything we think 
-                we understand about the Triune God, approached through wonder rather than doctrine.
-                The waters keep whispering the truth of our becoming, and of the God who is eternal.
-            </p>
-            <a href="https://www.amazon.com/Liturgy-Water-R-L-Groff/dp/B0GNGCG9R8" target="_blank">
-                <button>Buy on Amazon</button>
-            </a>
-        </div>
-        
-        <!-- On Leadership -->
-        <div class="card">
-            <img src="cover-on-leadership1.png" alt="Cover of On Leadership: A Simple Prose for the Masses" class="book-cover">
-            <h3>On Leadership</h3>
-            <p class="book-meta">Nonfiction · Leadership · 3rd Edition</p>
-            <p>
-                A concise, accessible exploration of leadership grounded in lived experience
-                rather than abstract theory. Drawing from more than three decades of military
-                service and organizational stewardship, this book distills the essential
-                practices of effective leaders into clear, memorable prose for readers at every
-                level.
-            </p>
-            <a href="https://www.amazon.com/dp/B0G4JSRWMJ" target="_blank">
-                <button>Buy on Amazon</button>
-            </a>
-        </div>
+    <!-- JavaScript & Controllers -->
+    <script>
+        // Ensure DOM is fully loaded before rendering Lucide icons
+        document.addEventListener("DOMContentLoaded", function() {
+            lucide.createIcons();
+        });
 
-        <!-- Between Flesh and Philosophy -->
-        <div class="card">
-            <img src="cover-between-flesh3.png" alt="Cover of Between Flesh and Philosophy" class="book-cover">
-            <h3>Between Flesh and Philosophy</h3>
-            <p class="book-meta">Nonfiction · Ethics · Cultural Analysis</p>
-            <p>
-                A thoughtful, measured exploration of identity, embodiment, and the modern
-                struggle to reconcile human experience with competing philosophical claims.
-                Drawing from leadership, theology, and lived experience, this work examines how
-                individuals and institutions can steward identity with clarity, compassion, and
-                moral courage in an age of cultural confusion.
-            </p>
-            <a href="https://www.amazon.com/dp/B0GF1G73KV" target="_blank">
-                <button>Buy on Amazon</button>
-            </a>
-        </div>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
 
-		 <!-- The Helioterran Effect -->
-        <div class="card">
-            <img src="Helioterran_Effect.png" alt="Cover of The Helioterran Effect" class="book-cover">
-            <h3>The Helioterran Effect</h3>
-            <p class="book-meta">Nonfiction · Science · Thermodynamics</p>
-            <p>
-				What if the way we measure time is hiding something relevant? Time is anchored
-				strictly to political history, becoming a blank tape of numbered days. When re-imagined,
-				time transforms from a static counter into a much more elegant state. Beginning with a
-				simple question about light, this study explores the underlying science of time
-				through the physical realities of Earth’s annual energy cycle.
-            </p>
-            <a href="https://www.rlgroff.com/helioterran.html" target="_blank">
-                <button>Explore Helioterran Calendar</button>
-            </a>
-    </div>
-</section>
+        function toggleStep1Drawer() {
+            const drawer = document.getElementById('step1-drawer');
+            const badge = document.getElementById('step1-badge');
+            
+            if (drawer.style.display === 'none' || drawer.style.display === '') {
+                drawer.style.display = 'block';
+                if (badge) badge.innerHTML = '✕ Close';
+            } else {
+                drawer.style.display = 'none';
+                if (badge) badge.innerHTML = '+ Discernment Process';
+            }
+        }
 
-</section>
+        function toggleStep2Curriculum() {
+            const drawer = document.getElementById('step2-curriculum-drawer');
+            const badge = document.getElementById('step2-chevron');
+            
+            if (drawer.style.display === 'none' || drawer.style.display === '') {
+                drawer.style.display = 'block';
+                if (badge) badge.innerHTML = '✕ Close Breakdown';
+            } else {
+                drawer.style.display = 'none';
+                if (badge) badge.innerHTML = '+ View 9-Week Breakdown';
+            }
+        }
 
-<section id="speaking">
-    <h2>Speaking &amp; Teaching</h2>
-    <div class="two-column">
-        <div>
-            <p>
-                I speak and teach on leadership, ethics, healthcare management, and the integration of
-                faith and vocation. My approach is shaped by years of military service,
-                academic work, and mentoring — always returning to the idea that leadership is
-                stewardship, not self-promotion.
-            </p>
-            <p>
-                In faith contexts, I explore spiritual warfare, truth, calling, and the quiet, ordinary
-                ways God works through imperfect people. In academic and professional settings,
-                I focus on ethics, systems thinking, and the moral weight of decision-making in
-                complex organizations.
-            </p>
-        </div>
-        <div class="card">
-            <h3>Topics</h3>
-            <ul>
-                <li>Leadership as stewardship in military and healthcare settings</li>
-                <li>Spiritual warfare and unseen conflict in everyday life</li>
-                <li>Faith, doubt, and vocation in a skeptical age</li>
-                <li>Healthcare ethics and responsible decision-making</li>
-                <li>Writing as witness in Christian faith and thriller genres</li>
-            </ul>
-            <p style="font-size:0.9rem;">
-                For inquiries about speaking, workshops, book discussions, or guest lectures,
-                please reach out via the contact section below.
-            </p>
-        </div>
-    </div>
-</section>
+        function toggleStep3Drawer() {
+            const drawer = document.getElementById('step3-drawer');
+            const badge = document.getElementById('step3-badge');
+            
+            if (drawer.style.display === 'none' || drawer.style.display === '') {
+                drawer.style.display = 'block';
+                if (badge) badge.innerHTML = '✕ Close';
+            } else {
+                drawer.style.display = 'none';
+                if (badge) badge.innerHTML = '+ Battle Rhythm';
+            }
+        }
 
-<section id="blog">
-    <h2>Blog</h2>
-    <p>
-        From time to time, I share reflections on faith, leadership, and the craft of storytelling. 
-        Below are sample entry ideas that can be expanded into full posts.
-    </p>
+        document.getElementById('landing-apply-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const feedback = document.getElementById('form-feedback');
+            
+            submitBtn.innerText = 'Submitting...';
+            submitBtn.disabled = true;
 
-    <div class="blog-entry">
-        <h3>When Silence Says More Than Answers</h3>
-        <p>
-            There are moments in the life of faith when God’s silence feels louder than any answer 
-            we hoped to receive. For years I treated that silence as absence. Now I’m learning to 
-            see it as invitation. Scripture is full of unfinished endings and unanswered questions— 
-            Abraham walking without a map, Job receiving no explanation, the disciples staring into 
-            the sky long after Jesus ascended. Sometimes the most faithful thing we can do is sit 
-            in the quiet and let the unfinished edges of our story draw us deeper into Him.
-        </p>
-    </div>
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
 
-    <hr class="blog-divider">
-
-    <div class="blog-entry">
-        <h3>Leadership, Stewardship, and the Weight of Command</h3>
-        <p>
-            Leadership is often romanticized from a distance. Up close, it feels less like authority 
-            and more like stewardship—an entrusted weight carried with humility and moral courage. 
-            Command is not about control but responsibility: standing in the gap between what is and 
-            what ought to be, absorbing pressure so others can work with dignity and purpose.
-        </p>
-    </div>
-
-    <hr class="blog-divider">
-
-    <div class="blog-entry">
-        <h3>Writing Spiritual Warfare Without Losing the Mystery</h3>
-        <p>
-            Writing about the unseen realm is both exhilarating and dangerous. Exhilarating because 
-            Scripture hints at a world alive with spiritual conflict; dangerous because the moment 
-            we pretend to map that world with certainty, we risk reducing mystery to mechanics. 
-            Fiction should awaken imagination, not dictate doctrine, leaving room for reverence and awe.
-        </p>
-    </div>
-	<hr class="blog-divider">
-
-    <div class="blog-entry">
-        <h3>What is The Trinity</h3>
-        <p>
-            Before anyone debates that question, it’s worth remembering something far older and far 
-			stranger: in Genesis, water is already there before light, before land, before anything 
-			takes shape. It is the first element named, the ancient substrate over which creation moves. 
-			The Liturgy of Water begins in that mystery — not to explain it, but to explore how something 
-			so old, so fundamental, and so often overlooked can shape a father’s search, a son’s resistance, 
-			and the quiet inheritance that passes from one generation to the next.
-        </p>
-	</div>
-</section>
-
-
-
-<section id="newsletter">
-    <h2>Newsletter</h2>
-    <div class="card">
-        <p>
-            If you’d like occasional updates on new releases, behind-the-scenes notes, and
-            reflections that don’t make it into the books, you can join the mailing list
-            below.
-        </p>
-
-        <!-- FIXED + FULLY WORKING FORM -->
-        <form action="https://formspree.io/f/mrebgwjq" method="POST" data-netlify="true">
-            <input type="hidden" name="_subject" value="New email list signup">
-
-            <label>
-                <strong>Email address</strong><br>
-                <input type="email" name="email" placeholder="you@example.com" required>
-            </label><br><br>
-
-            <label>
-                <strong>Name (optional)</strong><br>
-                <input type="text" name="name" placeholder="Your name">
-            </label><br><br>
-
-            <button type="submit">Join the list</button>
-        </form>
-
-        <p style="font-size:0.85rem; margin-top:8px;">
-            (Your information is never shared. You can unsubscribe anytime.)
-        </p>
-    </div>
-</section>
-
-<section id="contact">
-    <h2>Contact</h2>
-
-    <div class="card" 
-         style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
-
-        <!-- Left Column: Text -->
-        <div style="flex: 1; min-width: 260px;">
-            <p>
-                For speaking engagements, interviews, teaching inquiries, or reader correspondence,
-                you can reach me at:
-            </p>
-
-            <p><strong>Email:</strong> admin@rlgroff.com</p>
-
-            <p>
-                If you’re writing about one of the books, feel free to share how it intersected
-                with your own story—I’m always grateful to hear where the words landed.
-            </p>
-        </div>
-
-        <!-- Right Column: Sepia Image -->
-        <div style="flex: 1; min-width: 200px; text-align: center;">
-            <img src="rob-groff-bw.png"
-                 alt="Robert Groff author photo"
-                 style="
-                    max-width: 200px;
-                    height: auto;
-                    border-radius: 4px;
-                    filter: sepia(80%) contrast(95%) brightness(90%);
-                 ">
-        </div>
-
-    </div>
-</section>
-
-
-
-<footer>
-    <p>© 2025 R.L. GROFF – All Rights Reserved</p>
-</footer>
-
+                if (response.ok) {
+                    feedback.className = 'text-center p-3 text-sm rounded font-medium bg-emerald-950/80 border border-emerald-500/50 text-emerald-300';
+                    feedback.innerText = 'Application received! We will be in touch with you shortly regarding Cohort 1.';
+                    feedback.classList.remove('hidden');
+                    form.reset();
+                    submitBtn.innerText = 'Submit Application';
+                    submitBtn.disabled = false;
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (err) {
+                feedback.className = 'text-center p-3 text-sm rounded font-medium bg-rose-950/80 border border-rose-500/50 text-rose-300';
+                feedback.innerText = 'There was an issue submitting your application. Please try again.';
+                feedback.classList.remove('hidden');
+                submitBtn.innerText = 'Submit Application';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
 </body>
 </html>
-
 
 
 
