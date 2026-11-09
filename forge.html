@@ -1,1 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Forge | Men's Christian Mentorship Initiative</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forge: {
+                            900: '#0b0d10',
+                            800: '#12151c',
+                            700: '#1b202a',
+                            600: '#282f3e',
+                            amber: '#d97706',
+                            amberGlow: '#f59e0b',
+                            amberBright: '#fbbf24',
+                            slateAccent: '#3b82f6',
+                            muted: '#94a3b8'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Cinzel', 'serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0d10;
+            color: #f1f5f9;
+        }
+        .heading-font {
+            font-family: 'Cinzel', serif;
+        }
+        /* Custom Glowing & Ember Styling */
+        .glow-amber {
+            box-shadow: 0 0 35px -5px rgba(217, 119, 6, 0.35);
+        }
+        .glow-amber-lg {
+            box-shadow: 0 0 60px -10px rgba(245, 158, 11, 0.45);
+        }
+        .text-glow {
+            text-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+        }
+        .amber-border-gradient {
+            border-image: linear-gradient(to bottom, #f59e0b, #78350f) 1;
+        }
+        .bg-radial-forge {
+            background: radial-gradient(circle at 50% 20%, rgba(217, 119, 6, 0.15) 0%, rgba(11, 13, 16, 1) 70%);
+        }
+    </style>
+</head>
+<body class="bg-forge-900 text-slate-100 antialiased selection:bg-forge-amber selection:text-forge-900">
 
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-forge-900/90 backdrop-blur-md border-b border-forge-700/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded bg-gradient-to-br from-forge-amber to-amber-800 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                        <i data-lucide="flame" class="w-6 h-6 text-forge-900 fill-forge-900"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="heading-font text-xl font-bold tracking-wider text-white group-hover:text-forge-amberGlow transition-colors">THE FORGE</span>
+                        <span class="text-[10px] tracking-widest text-forge-muted uppercase font-semibold">by R.L. Groff</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                    <a href="#about-groff" class="text-slate-300 hover:text-forge-amberGlow transition-colors">About</a>
+                    <a href="#framework" class="text-slate-300 hover:text-forge-amberGlow transition-colors">The Framework</a>
+                    <a href="#how-it-works" class="text-slate-300 hover:text-forge-amberGlow transition-colors">How It Works</a>
+                    <a href="#pillars" class="text-slate-300 hover:text-forge-amberGlow transition-colors">Core Pillars</a>
+                </nav>
+
+                <!-- Header CTA Button -->
+                <div class="hidden sm:flex items-center gap-4">
+                    <button onclick="openApplyModal()" class="px-5 py-2.5 rounded text-xs uppercase tracking-wider font-bold bg-gradient-to-r from-forge-amber to-forge-amberGlow text-forge-900 hover:brightness-110 transition-all shadow-md hover:shadow-forge-amber/30">
+                        Apply Now
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white p-2">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-forge-800 border-b border-forge-700 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about-groff" class="block text-slate-300 hover:text-forge-amber py-2">About</a>
+            <a href="#framework" class="block text-slate-300 hover:text-forge-amber py-2">The Framework</a>
+            <a href="#how-it-works" class="block text-slate-300 hover:text-forge-amber py-2">How It Works</a>
+            <a href="#pillars" class="block text-slate-300 hover:text-forge-amber py-2">Core Pillars</a>
+            <button onclick="openApplyModal()" class="w-full mt-2 px-5 py-3 rounded text-xs uppercase tracking-wider font-bold bg-forge-amber text-forge-900">
+                Apply as Mentor / Mentee
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="pt-20">
+
+        <!-- HERO SECTION -->
+        <section class="relative min-h-[90vh] flex items-center justify-center bg-radial-forge overflow-hidden py-20 px-4">
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,#1b202a_1px,transparent_1px),linear-gradient(to_bottom,#1b202a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] opacity-30"></div>
+            
+            <div class="relative max-w-5xl mx-auto text-center z-10 space-y-8">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-forge-amber/40 bg-forge-800/80 text-forge-amberGlow text-xs font-semibold tracking-wider uppercase backdrop-blur-sm">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i> Cohort Applications Now Open
+                </div>
+
+                <h1 class="heading-font text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-tight">
+                    "AS IRON SHARPENS IRON,<br class="hidden sm:inline"/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-forge-amberBright via-forge-amber to-amber-700 text-glow">
+                        SO ONE MAN SHARPENS ANOTHER"
+                    </span>
+                </h1>
+
+                <p class="max-w-3xl mx-auto text-lg sm:text-xl text-slate-300 font-normal leading-relaxed">
+                    The Forge is an intentional, battle-tested Christian mentorship framework designed to forge men into faithful stewards, strategic leaders, and resilient spiritual warriors.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <button onclick="openApplyModal('mentee')" class="w-full sm:w-auto px-8 py-4 rounded text-sm font-bold tracking-widest uppercase bg-gradient-to-r from-forge-amber to-forge-amberGlow text-forge-900 hover:scale-105 transition-all glow-amber shadow-lg">
+                        Apply for Cohort 1
+                    </button>
+                    <a href="#framework" class="w-full sm:w-auto px-8 py-4 rounded text-sm font-bold tracking-widest uppercase bg-forge-800 border border-forge-700 hover:border-forge-amber text-slate-200 hover:text-white transition-all">
+                        Explore Framework
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-16 border-t border-forge-700/50 max-w-4xl mx-auto text-left">
+                    <div class="p-4 bg-forge-800/40 rounded border border-forge-700/40">
+                        <div class="heading-font text-2xl font-bold text-forge-amber">9 Weeks</div>
+                        <div class="text-xs text-forge-muted mt-1 uppercase tracking-wide">Structured Crucible</div>
+                    </div>
+                    <div class="p-4 bg-forge-800/40 rounded border border-forge-700/40">
+                        <div class="heading-font text-2xl font-bold text-forge-amber">One-to-One Pairing</div>
+                        <div class="text-xs text-forge-muted mt-1 uppercase tracking-wide">High-Vulnerability Model</div>
+                    </div>
+                    <div class="p-4 bg-forge-800/40 rounded border border-forge-700/40">
+                        <div class="heading-font text-2xl font-bold text-forge-amber">Strategic</div>
+                        <div class="text-xs text-forge-muted mt-1 uppercase tracking-wide">Military Leadership Roots</div>
+                    </div>
+                    <div class="p-4 bg-forge-800/40 rounded border border-forge-700/40">
+                        <div class="heading-font text-2xl font-bold text-forge-amber">Routine</div>
+                        <div class="text-xs text-forge-muted mt-1 uppercase tracking-wide">Accountability Check-Ins</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CORE PILLARS SECTION -->
+        <section id="pillars" class="py-24 bg-forge-800/40 border-y border-forge-700/50 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-forge-amber">Built for Strength & Stewardship</h2>
+                    <h3 class="heading-font text-3xl sm:text-4xl font-bold text-white">THE THREE PILLARS OF THE FORGE</h3>
+                    <p class="text-slate-400">Men aren't formed in isolation. They are tempered under intentional pressure, biblical alignment, and strategic accountability.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-8 rounded-lg bg-forge-800 border border-forge-700 hover:border-forge-amber/60 transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-md bg-forge-700/70 border border-forge-600 flex items-center justify-center text-forge-amber mb-6 group-hover:bg-forge-amber group-hover:text-forge-900 transition-colors">
+                                <i data-lucide="cross" class="w-7 h-7"></i>
+                            </div>
+                            <h4 class="heading-font text-xl font-bold text-white mb-3">Biblical Stewardship & Vocation</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Reframing your career, family, finances, and influence not as personal possessions, but as sacred trusts granted by God to be strategically managed for His Kingdom.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-slate-300 pt-4 border-t border-forge-700">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-forge-amber"></i> Kingdom Vocation Mapping</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-forge-amber"></i> Spiritual Warfare Preparedness</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-8 rounded-lg bg-forge-800 border border-forge-700 hover:border-forge-amber/60 transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-md bg-forge-700/70 border border-forge-600 flex items-center justify-center text-forge-amber mb-6 group-hover:bg-forge-amber group-hover:text-forge-900 transition-colors">
+                                <i data-lucide="swords" class="w-7 h-7"></i>
+                            </div>
+                            <h4 class="heading-font text-xl font-bold text-white mb-3">Tactical One-to-One Accountability</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Direct, high-trust mentor and mentee pairing. No passive consumption—only brutal honesty, shared prayer logs, purity accountability, and actionable weekly goals.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-slate-300 pt-4 border-t border-forge-700">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-forge-amber"></i> Daily Habit & Prayer Tracking</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-forge-amber"></i> Direct Unfiltered Feedback</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-8 rounded-lg bg-forge-800 border border-forge-700 hover:border-forge-amber/60 transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-md bg-forge-700/70 border border-forge-600 flex items-center justify-center text-forge-amber mb-6 group-hover:bg-forge-amber group-hover:text-forge-900 transition-colors">
+                                <i data-lucide="compass" class="w-7 h-7"></i>
+                            </div>
+                            <h4 class="heading-font text-xl font-bold text-white mb-3">Battle-Tested Leadership</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Drawing upon military command principles, social science research, and deep theological reflection to build men who remain steady in times of cultural shift and trial.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-slate-300 pt-4 border-t border-forge-700">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-forge-amber"></i> Command Discipline & Ethics</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-forge-amber"></i> Generational Impact Focus</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE FRAMEWORK & HOW IT WORKS -->
+        <section id="how-it-works" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-forge-amber">The Mentorship Roadmap</h2>
+                <h3 class="heading-font text-3xl sm:text-4xl font-bold text-white">HOW THE FORGE OPERATES</h3>
+                <p class="text-slate-400">A structured process designed for busy men who require depth, clarity, and accountability.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <div class="relative bg-forge-800/80 p-8 rounded-lg border border-forge-700 space-y-4">
+                    <span class="heading-font text-4xl font-black text-forge-amber/30">01</span>
+                    <h4 class="heading-font text-xl font-bold text-white">Matching & Vetting</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Mentors and Mentees are intentionally evaluated based on life stage, leadership goals, theological alignment, and spiritual growth targets.
+                    </p>
+                </div>
+
+                <div class="relative bg-forge-800/80 p-8 rounded-lg border border-forge-amber/50 space-y-4 shadow-lg shadow-forge-amber/5">
+                    <span class="heading-font text-4xl font-black text-forge-amber">02</span>
+                    <h4 class="heading-font text-xl font-bold text-white">9-Week Guided Crucible</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Execute a weekly curriculum focused on military-grade discipline, biblical stewardship, emotional resilience, and armor for spiritual warfare.
+                    </p>
+                </div>
+
+                <div class="relative bg-forge-800/80 p-8 rounded-lg border border-forge-700 space-y-4">
+                    <span class="heading-font text-4xl font-black text-forge-amber/30">03</span>
+                    <h4 class="heading-font text-xl font-bold text-white">Rhythm of Accountability</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Pairs complete brief daily digital logs (prayer, scripture, habits) and convene for an intense 45-minute weekly debrief session.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about-groff" class="py-24 bg-forge-800/60 border-t border-forge-700/60 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 relative">
+                        <div class="aspect-[4/5] rounded-xl bg-gradient-to-t from-forge-900 via-forge-800 to-forge-700 p-2 border border-forge-600/60 shadow-2xl overflow-hidden relative group">
+                            <img src="https://placehold.co/600x750/1b202a/d97706?text=FOUNDERS" 
+                                 alt="FOUNDERS" 
+                                 class="w-full h-full object-cover rounded-lg grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-forge-900 via-transparent to-transparent opacity-90"></div>
+                            <div class="absolute bottom-6 left-6 right-6 space-y-1">
+                                <div class="heading-font text-2xl font-bold text-white">BOWERS • FYLER • GROFF • MCCLAIN • TORKELSON</div>
+                                <div class="text-xs font-medium text-forge-amber uppercase tracking-wider">Servant Leaders • Authors • Business Owners • Husbands • Fathers</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-forge-amber">
+                            <i data-lucide="award" class="w-4 h-4"></i> The Founders' Vision
+                        </div>
+                        <h3 class="heading-font text-3xl sm:text-5xl font-bold text-white leading-tight">
+                            LEADERSHIP BORN IN THE FIRES OF DUTY & FAITH
+                        </h3>
+                        <p class="text-slate-300 leading-relaxed text-base">
+                            The founders of The Forge have spent decades developing frameworks for high-stakes servant leadership, organizational integrity, and family spiritual growth. Their work centers on a singular mission: restoring biblical stewardship and courageous manhood.
+                        </p>
+                        
+                        <blockquote class="p-4 border-l-2 border-forge-amber bg-forge-900/60 italic text-slate-200 text-sm">
+                            "True leadership is not about personal dominance; it is stewardship under God's authority. When light collides with darkness, men of faith must be prepared, tempered, and standing side by side."
+                        </blockquote>
+
+                        <div class="pt-4 grid grid-cols-2 gap-4 text-xs font-semibold uppercase tracking-wider text-slate-300">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="book-open" class="w-4 h-4 text-forge-amber"></i> Author of <em>Where Light Collides</em>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="shield" class="w-4 h-4 text-forge-amber"></i> Servant Leadership Frameworks
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- APPLICATION SECTION -->
+        <section id="framework" class="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-b from-forge-800 to-forge-900 border border-forge-amber/40 rounded-2xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-forge-amber/5 rounded-full filter blur-3xl pointer-events-none"></div>
+
+                <div class="text-center max-w-2xl mx-auto space-y-4 mb-10">
+                    <h3 class="heading-font text-3xl font-bold text-white">REQUEST AN INVITATION TO THE FORGE</h3>
+                    <p class="text-slate-300 text-sm">
+                        Applications are reviewed to ensure strong alignment between mentors and mentees. Select your intended role below to join Cohort 1.
+                    </p>
+                </div>
+
+                <form id="landing-apply-form" action="https://formspree.io/f/mrebgwjq" method="POST" class="space-y-6 max-w-xl mx-auto">
+                    <input type="hidden" name="_subject" value="New The Forge Application Received">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">First & Last Name</label>
+                            <input type="text" name="name" required placeholder="John Doe" class="w-full bg-forge-900 border border-forge-700 focus:border-forge-amber rounded px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-forge-amber">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Email Address</label>
+                            <input type="email" name="email" required placeholder="john@example.com" class="w-full bg-forge-900 border border-forge-700 focus:border-forge-amber rounded px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-forge-amber">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">I am applying to be a:</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="cursor-pointer border border-forge-700 bg-forge-900/50 p-4 rounded text-center hover:border-forge-amber has-[:checked]:border-forge-amber has-[:checked]:bg-forge-amber/10 transition-all">
+                                <input type="radio" name="role" value="Mentee" checked class="hidden">
+                                <div class="font-bold text-sm text-white">Mentee</div>
+                                <div class="text-[11px] text-slate-400 mt-1">Seeking growth & direction</div>
+                            </label>
+                            <label class="cursor-pointer border border-forge-700 bg-forge-900/50 p-4 rounded text-center hover:border-forge-amber has-[:checked]:border-forge-amber has-[:checked]:bg-forge-amber/10 transition-all">
+                                <input type="radio" name="role" value="Mentor" class="hidden">
+                                <div class="font-bold text-sm text-white">Mentor</div>
+                                <div class="text-[11px] text-slate-400 mt-1">Ready to invest in other men</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Brief Background & Mentorship Goals</label>
+                        <textarea name="background_and_goals" rows="3" placeholder="Tell us briefly about your current season of life, profession, and spiritual goals..." class="w-full bg-forge-900 border border-forge-700 focus:border-forge-amber rounded px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-forge-amber"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded font-bold uppercase tracking-widest text-xs bg-gradient-to-r from-forge-amber to-forge-amberGlow text-forge-900 hover:brightness-110 transition-all shadow-lg glow-amber">
+                        Submit Application
+                    </button>
+                    
+                    <div id="form-feedback" class="hidden text-center p-3 text-sm rounded font-medium"></div>
+
+                    <p class="text-center text-[11px] text-slate-500">
+                        Strict confidentiality maintained. We will reach out via email within 48 hours.
+                    </p>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-forge-900 border-t border-forge-700/60 py-12 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="md:col-span-2 space-y-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-forge-amber flex items-center justify-center text-forge-900">
+                        <i data-lucide="flame" class="w-5 h-5 fill-forge-900"></i>
+                    </div>
+                    <span class="heading-font text-lg font-bold text-white tracking-wider">THE FORGE</span>
+                </div>
+                <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+                    A Christian men's stewardship and mentorship initiative. Steel sharpening steel for Kingdom impact.
+                </p>
+            </div>
+
+            <div>
+                <h5 class="heading-font text-xs font-bold uppercase text-white mb-3 tracking-wider">Navigation</h5>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#about-groff" class="hover:text-forge-amber transition-colors">About</a></li>
+                    <li><a href="#framework" class="hover:text-forge-amber transition-colors">The Framework</a></li>
+                    <li><a href="#pillars" class="hover:text-forge-amber transition-colors">Core Pillars</a></li>
+                    <li><a href="https://www.rlgroff.com" target="_blank" class="hover:text-forge-amber transition-colors">rlgroff.com Official Site</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="heading-font text-xs font-bold uppercase text-white mb-3 tracking-wider">Direct Contact</h5>
+                <p class="text-xs text-slate-400 mb-2">For inquiries regarding speaking, cohorts, or mentorship:</p>
+                <a href="mailto:admin@rlgroff.com" class="text-xs font-bold text-forge-amber hover:underline flex items-center gap-1">
+                    <i data-lucide="mail" class="w-3.5 h-3.5"></i> admin@rlgroff.com
+                </a>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-forge-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+            <div>&copy; 2026 R.L. Groff. All rights reserved.</div>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-slate-200">Privacy Policy</a>
+                <a href="#" class="hover:text-slate-200">Terms of Mentorship</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SUCCESS MODAL -->
+    <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-forge-800 border border-forge-amber rounded-xl p-8 max-w-md w-full text-center space-y-4 shadow-2xl relative">
+            <div class="w-16 h-16 rounded-full bg-forge-amber/20 border border-forge-amber text-forge-amber mx-auto flex items-center justify-center">
+                <i data-lucide="check-circle-2" class="w-8 h-8"></i>
+            </div>
+            <h4 class="heading-font text-2xl font-bold text-white">APPLICATION RECEIVED</h4>
+            <p class="text-sm text-slate-300 leading-relaxed">
+                Thank you for taking the step to enter The Forge. Your application has been logged. The Forge team will review your information and respond via email within 48 hours.
+            </p>
+            <button onclick="closeSuccessModal()" class="w-full py-3 rounded text-xs uppercase font-bold tracking-wider bg-forge-amber text-forge-900 hover:brightness-110">
+                Return to Site
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Apply Modal / Scroll Routing
+        function openApplyModal(role) {
+            if (role) {
+                const radio = document.querySelector(`input[name="role"][value="${role}"]`);
+                if (radio) radio.checked = true;
+            }
+            document.getElementById('framework').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById('success-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Form Handling
+        document.getElementById('landing-apply-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const feedback = document.getElementById('form-feedback');
+            
+            submitBtn.innerText = 'Submitting...';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    feedback.className = 'text-center p-3 text-sm rounded font-medium bg-emerald-950/80 border border-emerald-500/50 text-emerald-300';
+                    feedback.innerText = 'Application received! We will be in touch with you shortly regarding Cohort 1.';
+                    feedback.classList.remove('hidden');
+                    form.reset();
+                    submitBtn.innerText = 'Submit Application';
+                    submitBtn.disabled = false;
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (err) {
+                feedback.className = 'text-center p-3 text-sm rounded font-medium bg-rose-950/80 border border-rose-500/50 text-rose-300';
+                feedback.innerText = 'There was an issue submitting your application. Please try again.';
+                feedback.classList.remove('hidden');
+                submitBtn.innerText = 'Submit Application';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
