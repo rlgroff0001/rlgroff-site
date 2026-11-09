@@ -3,123 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Forge | Digital Card</title>
+    <title>The Forge | Recruiting Roster</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         .heading-font { font-family: system-ui, -apple-system, sans-serif; font-weight: 800; letter-spacing: -0.025em; }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center justify-start py-8 px-4">
 
-    <div class="w-full max-w-sm bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden p-6 text-center relative">
-        
-        <!-- Header Branding -->
-        <div class="mb-6">
-            <div class="w-12 h-12 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-center justify-center mx-auto mb-3 text-amber-500">
-                <i data-lucide="flame" class="w-6 h-6"></i>
-            </div>
-            <span class="text-[10px] font-black uppercase tracking-widest text-amber-500">THE FORGE MENTORSHIP INITIATIVE</span>
+    <!-- Header Banner -->
+    <div class="w-full max-w-sm text-center mb-8">
+        <div class="w-14 h-14 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex items-center justify-center mx-auto mb-3 text-amber-500 shadow-lg shadow-amber-500/10">
+            <i data-lucide="flame" class="w-7 h-7"></i>
         </div>
-
-        <!-- Dynamic Profile Content -->
-        <h1 id="card-name" class="heading-font text-2xl font-bold text-white mb-1">Loading...</h1>
-        <p id="card-title" class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-6">Recruiting Team</p>
-
-        <!-- Action Buttons -->
-        <div class="space-y-3 mb-6">
-            <button onclick="downloadVCard()" class="w-full py-3 px-4 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10">
-                <i data-lucide="user-plus" class="w-4 h-4"></i> Save Contact
-            </button>
-            <a id="btn-apply" href="forge.html" class="w-full py-3 px-4 bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm rounded-xl transition flex items-center justify-center gap-2 border border-slate-700">
-                <i data-lucide="file-text" class="w-4 h-4"></i> Apply for Forge
-            </a>
-        </div>
-
-        <!-- Contact Links -->
-        <div class="space-y-2 text-left text-xs border-t border-slate-800 pt-4 text-slate-300">
-            <a id="link-phone" href="#" class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition">
-                <i data-lucide="phone" class="w-4 h-4 text-amber-500"></i>
-                <span id="txt-phone">--</span>
-            </a>
-            <a id="link-email" href="#" class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition">
-                <i data-lucide="mail" class="w-4 h-4 text-amber-500"></i>
-                <span id="txt-email">--</span>
-            </a>
-            <a href="https://www.rlgroff.com/forge.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition">
-                <i data-lucide="globe" class="w-4 h-4 text-amber-500"></i>
-                <span>rlgroff.com/forge.html</span>
-            </a>
-        </div>
-
-        <div class="mt-6 pt-4 border-t border-slate-800/60 text-[10px] text-slate-500">
-            Iron Sharpens Iron • Proverbs 27:17
-        </div>
+        <h1 class="heading-font text-2xl font-bold text-white tracking-tight">THE FORGE</h1>
+        <p class="text-xs font-bold uppercase tracking-widest text-amber-500 mt-1">Recruiting Team Roster</p>
     </div>
 
+    <!-- Cards Container Feed -->
+    <div id="cards-container" class="w-full max-w-sm space-y-6"></div>
+
     <script>
-        // Central Team Roster Configuration
-        const TEAM = {
-            groff: {
-                name: "R.L. Groff",
-                title: "Initiative Leader & Anvil",
-                phone: "+13215550199",
-                phoneDisplay: "(321) 555-0199",
-                email: "groff@rlgroff.com"
+        // Central Team Roster Configuration (Updated Real Contact Data)
+        const TEAM = [
+            {
+                id: "groff",
+                name: "Rob Groff",
+                title: "Forge Leader & Anvil",
+                phone: "+13219609881",
+                phoneDisplay: "(321) 960-9881"
             },
-            bowers: {
-                name: "Bowers",
-                title: "Forge Recruiter & Anvil",
-                phone: "+13215550101",
-                phoneDisplay: "(321) 555-0101",
-                email: "bowers@rlgroff.com"
+            {
+                id: "bowers",
+                name: "Chris Bowers",
+                title: "Forge Leader & Anvil",
+                phone: "+13214266004",
+                phoneDisplay: "(321) 426-6004"
             },
-            fyler: {
-                name: "Fyler",
-                title: "Forge Recruiter & Anvil",
-                phone: "+13215550102",
-                phoneDisplay: "(321) 555-0102",
-                email: "fyler@rlgroff.com"
+            {
+                id: "fyler",
+                name: "Bill Fyler",
+                title: "Forge Leader & Anvil",
+                phone: "+13216155435",
+                phoneDisplay: "(321) 615-5435"
             },
-            mcclain: {
-                name: "McClain",
-                title: "Forge Recruiter & Anvil",
-                phone: "+13215550103",
-                phoneDisplay: "(321) 555-0103",
-                email: "mcclain@rlgroff.com"
+            {
+                id: "mcclain",
+                name: "Scott McClain",
+                title: "Forge Leader & Anvil",
+                phone: "+13213052300",
+                phoneDisplay: "(321) 305-2300"
             },
-            torkelson: {
-                name: "Torkelson",
-                title: "Forge Recruiter & Anvil",
-                phone: "+13215550104",
-                phoneDisplay: "(321) 555-0104",
-                email: "torkelson@rlgroff.com"
+            {
+                id: "torkelson",
+                name: "Chris Torkelson",
+                title: "Forge Leader & Anvil",
+                phone: "+13216041755",
+                phoneDisplay: "(321) 604-1755"
             }
-        };
+        ];
 
-        // Parse query param ?id=name
+        // Parse query parameter ?id=name
         const params = new URLSearchParams(window.location.search);
-        const memberId = (params.get('id') || 'groff').toLowerCase();
-        const profile = TEAM[memberId] || TEAM['groff'];
+        const filterId = params.get('id')?.toLowerCase();
 
-        // Populate Page Data
-        document.getElementById('card-name').innerText = profile.name;
-        document.getElementById('card-title').innerText = profile.title;
-        document.getElementById('txt-phone').innerText = profile.phoneDisplay;
-        document.getElementById('link-phone').href = `tel:${profile.phone}`;
-        document.getElementById('txt-email').innerText = profile.email;
-        document.getElementById('link-email').href = `mailto:${profile.email}`;
+        // Determine if rendering full list or filtered single member
+        const renderList = filterId ? TEAM.filter(m => m.id === filterId) : TEAM;
+        const container = document.getElementById('cards-container');
 
-        // Dynamic vCard Generation
-        function downloadVCard() {
+        let html = '';
+
+        renderList.forEach(profile => {
+            const firstName = profile.name.split(' ')[0];
+            html += `
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden p-6 text-center relative">
+                    
+                    <div class="mb-4">
+                        <div class="w-10 h-10 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-center justify-center mx-auto mb-2 text-amber-500">
+                            <i data-lucide="shield" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-[9px] font-black uppercase tracking-widest text-amber-500">THE FORGE MENTORSHIP INITIATIVE</span>
+                    </div>
+
+                    <h2 class="heading-font text-2xl font-bold text-white mb-1">${profile.name}</h2>
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-6">${profile.title}</p>
+
+                    <div class="space-y-3 mb-6">
+                        <button onclick="downloadVCard('${profile.id}')" class="w-full py-3 px-4 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10">
+                            <i data-lucide="user-plus" class="w-4 h-4"></i> Save ${firstName}'s Contact
+                        </button>
+                        <a href="forge.html" class="w-full py-3 px-4 bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm rounded-xl transition flex items-center justify-center gap-2 border border-slate-700">
+                            <i data-lucide="file-text" class="w-4 h-4"></i> Apply for Forge
+                        </a>
+                    </div>
+
+                    <div class="space-y-2 text-left text-xs border-t border-slate-800 pt-4 text-slate-300">
+                        <a href="tel:${profile.phone}" class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition">
+                            <i data-lucide="phone" class="w-4 h-4 text-amber-500"></i>
+                            <span>Call: ${profile.phoneDisplay}</span>
+                        </a>
+                        <a href="sms:${profile.phone}" class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition">
+                            <i data-lucide="message-square" class="w-4 h-4 text-amber-500"></i>
+                            <span>Text: ${profile.phoneDisplay}</span>
+                        </a>
+                        <a href="https://www.rlgroff.com/forge.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/60 transition">
+                            <i data-lucide="globe" class="w-4 h-4 text-amber-500"></i>
+                            <span>rlgroff.com/forge.html</span>
+                        </a>
+                    </div>
+
+                    <div class="mt-5 pt-3 border-t border-slate-800/60 text-[10px] text-slate-500">
+                        Iron Sharpens Iron • Proverbs 27:17
+                    </div>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+
+        // Dynamic vCard Generation Engine
+        function downloadVCard(id) {
+            const profile = TEAM.find(m => m.id === id);
+            if (!profile) return;
+
             const vcardData = `BEGIN:VCARD
 VERSION:3.0
-N:${profile.name};;;;
+N:${profile.name.split(' ').reverse().join(';')};;;;
 FN:${profile.name}
 ORG:The Forge Mentorship Initiative
 TITLE:${profile.title}
 TEL;TYPE=CELL:${profile.phone}
-EMAIL:${profile.email}
 URL:https://www.rlgroff.com/forge.html
 NOTE:Iron Sharpens Iron - Biblical Mentorship Initiative
 END:VCARD`;
