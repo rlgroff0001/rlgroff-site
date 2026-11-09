@@ -47,18 +47,11 @@
         .heading-font {
             font-family: 'Cinzel', serif;
         }
-        /* Custom Glowing & Ember Styling */
         .glow-amber {
             box-shadow: 0 0 35px -5px rgba(217, 119, 6, 0.35);
         }
-        .glow-amber-lg {
-            box-shadow: 0 0 60px -10px rgba(245, 158, 11, 0.45);
-        }
         .text-glow {
             text-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
-        }
-        .amber-border-gradient {
-            border-image: linear-gradient(to bottom, #f59e0b, #78350f) 1;
         }
         .bg-radial-forge {
             background: radial-gradient(circle at 50% 20%, rgba(217, 119, 6, 0.15) 0%, rgba(11, 13, 16, 1) 70%);
@@ -74,7 +67,7 @@
                 <!-- Brand Logo -->
                 <a href="#" class="flex items-center gap-3 group">
                     <div class="w-10 h-10 rounded bg-gradient-to-br from-forge-amber to-amber-800 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-                        <i data-lucide="flame" class="w-6 h-6 text-forge-900 fill-forge-900"></i>
+                        <i data-lucide="flame" class="w-6 h-6 text-forge-900"></i>
                     </div>
                     <div class="flex flex-col">
                         <span class="heading-font text-xl font-bold tracking-wider text-white group-hover:text-forge-amberGlow transition-colors">THE FORGE</span>
@@ -85,21 +78,20 @@
                 <!-- Desktop Nav -->
                 <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
                     <a href="#about-groff" class="text-slate-300 hover:text-forge-amberGlow transition-colors">About</a>
-                    <a href="#framework" class="text-slate-300 hover:text-forge-amberGlow transition-colors">The Framework</a>
                     <a href="#how-it-works" class="text-slate-300 hover:text-forge-amberGlow transition-colors">How It Works</a>
                     <a href="#pillars" class="text-slate-300 hover:text-forge-amberGlow transition-colors">Core Pillars</a>
                 </nav>
 
                 <!-- Header CTA Button -->
                 <div class="hidden sm:flex items-center gap-4">
-                    <a href="#framework" class="px-5 py-2.5 rounded text-xs uppercase tracking-wider font-bold bg-gradient-to-r from-forge-amber to-forge-amberGlow text-forge-900 hover:brightness-110 transition-all shadow-md hover:shadow-forge-amber/30">
+                    <a href="#framework" class="px-5 py-2.5 rounded text-xs uppercase tracking-wider font-bold bg-gradient-to-r from-forge-amber to-forge-amberGlow text-forge-900 hover:brightness-110 transition-all shadow-md">
                         Apply Now
                     </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <div class="flex md:hidden">
-                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white p-2">
+                    <button onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white p-2">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -109,7 +101,6 @@
         <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-forge-800 border-b border-forge-700 px-4 pt-2 pb-6 space-y-3">
             <a href="#about-groff" class="block text-slate-300 hover:text-forge-amber py-2">About</a>
-            <a href="#framework" class="block text-slate-300 hover:text-forge-amber py-2">The Framework</a>
             <a href="#how-it-works" class="block text-slate-300 hover:text-forge-amber py-2">How It Works</a>
             <a href="#pillars" class="block text-slate-300 hover:text-forge-amber py-2">Core Pillars</a>
             <a href="#framework" class="block w-full text-center mt-2 px-5 py-3 rounded text-xs uppercase tracking-wider font-bold bg-forge-amber text-forge-900">
@@ -131,9 +122,9 @@
                 </div>
 
                 <h1 class="heading-font text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-tight">
-                    "AS IRON SHARPENS IRON,<br class="hidden sm:inline"/>
+                    AS IRON SHARPENS IRON,<br class="hidden sm:inline"/>
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-forge-amberBright via-forge-amber to-amber-700 text-glow">
-                        SO ONE MAN SHARPENS ANOTHER"
+                        SO ONE MAN SHARPENS ANOTHER
                     </span>
                 </h1>
 
@@ -243,7 +234,7 @@
                 <p class="text-slate-400">A structured process designed for busy men who require depth, clarity, and accountability.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- STEP 1: MATCHING & VETTING -->
                 <div class="relative col-span-1 space-y-4">
                     <div onclick="toggleStep1Drawer()" class="cursor-pointer bg-forge-800/80 p-8 rounded-lg border border-forge-700/60 hover:border-forge-amber transition-all duration-300 space-y-4 shadow-lg group">
@@ -384,8 +375,6 @@
         <section id="about-groff" class="py-24 bg-forge-800/60 border-t border-forge-700/60 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    
-                    <!-- Bio Image / Visual Card -->
                     <div class="lg:col-span-5 relative">
                         <div class="aspect-[4/5] rounded-xl bg-gradient-to-t from-forge-900 via-forge-800 to-forge-700 p-2 border border-forge-600/60 shadow-2xl overflow-hidden relative group">
                             <img src="https://placehold.co/600x750/1b202a/d97706?text=FOUNDERS" 
@@ -399,7 +388,6 @@
                         </div>
                     </div>
 
-                    <!-- Bio Text & Vision -->
                     <div class="lg:col-span-7 space-y-6">
                         <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-forge-amber">
                             <i data-lucide="award" class="w-4 h-4"></i> The Founders' Vision
@@ -417,14 +405,13 @@
 
                         <div class="pt-4 grid grid-cols-2 gap-4 text-xs font-semibold uppercase tracking-wider text-slate-300">
                             <div class="flex items-center gap-2">
-                                <i data-lucide="book-open" class="w-4 h-4 text-forge-amber"></i> Author of <em>Where Light Collides</em>
+                                <i data-lucide="book-open" class="w-4 h-4 text-forge-amber"></i> Author of Where Light Collides
                             </div>
                             <div class="flex items-center gap-2">
                                 <i data-lucide="shield" class="w-4 h-4 text-forge-amber"></i> Servant Leadership Frameworks
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -442,7 +429,6 @@
                 </div>
 
                 <form id="landing-apply-form" action="https://formspree.io/f/mrebgwjq" method="POST" class="space-y-6 max-w-xl mx-auto">
-                    <!-- Formspree Subject Line Configuration -->
                     <input type="hidden" name="_subject" value="New The Forge Application Received">
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -503,18 +489,18 @@
         <p>&copy; The Forge Mentorship Initiative. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript & Interactive Controllers -->
+    <!-- JavaScript & Controllers -->
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        // Ensure DOM is fully loaded before rendering Lucide icons
+        document.addEventListener("DOMContentLoaded", function() {
+            lucide.createIcons();
+        });
 
-        // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
 
-        // Step 1 Toggle
         function toggleStep1Drawer() {
             const drawer = document.getElementById('step1-drawer');
             const badge = document.getElementById('step1-badge');
@@ -528,7 +514,6 @@
             }
         }
 
-        // Step 2 Toggle
         function toggleStep2Curriculum() {
             const drawer = document.getElementById('step2-curriculum-drawer');
             const badge = document.getElementById('step2-chevron');
@@ -542,7 +527,6 @@
             }
         }
 
-        // Step 3 Toggle
         function toggleStep3Drawer() {
             const drawer = document.getElementById('step3-drawer');
             const badge = document.getElementById('step3-badge');
@@ -556,7 +540,6 @@
             }
         }
 
-        // Formspree Async Handler
         document.getElementById('landing-apply-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             const form = e.target;
