@@ -259,14 +259,77 @@
                     </p>
                 </div>
 
-                <!-- Step 2 -->
-                <div class="relative bg-forge-800/80 p-8 rounded-lg border border-forge-amber/50 space-y-4 shadow-lg shadow-forge-amber/5">
-                    <span class="heading-font text-4xl font-black text-forge-amber">02</span>
-                    <h4 class="heading-font text-xl font-bold text-white">9-Week Guided Crucible</h4>
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        Execute a weekly curriculum focused on military-grade discipline, biblical stewardship, emotional resilience, and armor for spiritual warfare.
-                    </p>
+                <!-- Step 2 (Interactive & Standardized Border) -->
+<div class="relative col-span-1 space-y-4">
+    <!-- Clickable Step 2 Box -->
+    <div onclick="toggleStep2Curriculum()" class="cursor-pointer bg-forge-800/80 p-8 rounded-lg border border-forge-700/60 hover:border-forge-amber transition-all duration-300 space-y-4 shadow-lg group">
+        <div class="flex items-center justify-between">
+            <span class="heading-font text-4xl font-black text-forge-amber">02</span>
+            <span id="step2-chevron" class="text-[10px] font-bold uppercase tracking-wider text-forge-amber bg-forge-amber/10 px-2.5 py-1 rounded group-hover:bg-forge-amber group-hover:text-forge-900 transition-all">
+                + View 9-Week Breakdown
+            </span>
+        </div>
+        <h4 class="heading-font text-xl font-bold text-white group-hover:text-forge-amber transition-colors">9-Week Guided Crucible</h4>
+        <p class="text-sm text-slate-300 leading-relaxed">
+            Execute a weekly curriculum focused on military-grade discipline, biblical stewardship, emotional resilience, and armor for spiritual warfare.
+        </p>
+    </div>
+
+    <!-- Inline 9-Week Expandable Drawer -->
+    <div id="step2-curriculum-drawer" style="display: none;" class="mt-4 bg-forge-900/95 border border-forge-amber/40 rounded-xl p-6 shadow-2xl transition-all">
+        <div class="flex items-center justify-between mb-6 pb-3 border-b border-forge-700">
+            <div>
+                <span class="text-[10px] font-bold tracking-widest text-forge-amber uppercase">BetterMan Aligned Discipleship</span>
+                <h5 class="heading-font text-lg font-bold text-white">THE 9-WEEK ROADMAP</h5>
+            </div>
+            <button type="button" onclick="toggleStep2Curriculum()" class="text-xs font-bold uppercase text-slate-400 hover:text-forge-amber">✕ Close</button>
+        </div>
+
+        <div class="space-y-6">
+            <!-- Phase 1 -->
+            <div class="bg-forge-950/80 border border-forge-800 rounded-lg p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-forge-amber bg-forge-amber/10 px-2 py-0.5 rounded">Phase 1</span>
+                    <span class="text-[10px] text-slate-400 font-mono">Weeks 1–3</span>
                 </div>
+                <h6 class="heading-font text-sm font-bold text-white mb-1">Real Manhood</h6>
+                <ul class="space-y-2 text-xs text-slate-300 mt-2">
+                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W1:</span> <span><strong>Rejecting Passivity:</strong> Stepping out of spiritual complacency.</span></li>
+                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W2:</span> <span><strong>Accepting Responsibility:</strong> Owning leadership in heart, home, & church.</span></li>
+                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W3:</span> <span><strong>Leading Courageously:</strong> Eternal reward over cultural approval.</span></li>
+                </ul>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="bg-forge-950/80 border border-forge-800 rounded-lg p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-forge-amber bg-forge-amber/10 px-2 py-0.5 rounded">Phase 2</span>
+                    <span class="text-[10px] text-slate-400 font-mono">Weeks 4–6</span>
+                </div>
+                <h6 class="heading-font text-sm font-bold text-white mb-1">The Battle & The Heart</h6>
+                <ul class="space-y-2 text-xs text-slate-300 mt-2">
+                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W4:</span> <span><strong>Identity & Wounds:</strong> Addressing past hurts to lead with humility.</span></li>
+                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W5:</span> <span><strong>Purity & Integrity:</strong> Establishing ironclad personal accountability.</span></li>
+                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W6:</span> <span><strong>Relational Leadership:</strong> Loving selflessly in marriage & family.</span></li>
+                </ul>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="bg-forge-950/80 border border-forge-800 rounded-lg p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-forge-amber bg-forge-amber/10 px-2 py-0.5 rounded">Phase 3</span>
+                    <span class="text-[10px] text-slate-400 font-mono">Weeks 7–9</span>
+                </div>
+                <h6 class="heading-font text-sm font-bold text-white mb-1">Mission & Deployment</h6>
+                <ul class="space-y-2 text-xs text-slate-300 mt-2">
+                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W7:</span> <span><strong>Vocation as Worship:</strong> Aligning work with kingdom stewardship.</span></li>
+                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W8:</span> <span><strong>Spiritual Warfare:</strong> Recognizing tactics of enemy opposition.</span></li>
+                    <li class="flex items-start gap-1.5"><span class="text-forge-amber font-bold">W9:</span> <span><strong>Commissioning:</strong> Completing the cohort and mentoring another.</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
                 <!-- Step 3 -->
                 <div class="relative bg-forge-800/80 p-8 rounded-lg border border-forge-700 space-y-4">
