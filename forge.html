@@ -562,88 +562,99 @@
 
     <!-- JavaScript & Controllers -->
     <script>
-        // Auto-Calculating 12-Week Schedule Engine
-        (function generateForgeSchedule() {
-            const tables = ["Table of Matthew", "Table of Mark", "Table of Luke", "Table of John"];
-            const anchorDate = new Date("2027-01-11T00:00:00");
-            const cycleDays = 84; // 12 weeks
-            const today = new Date();
+       // Auto-Calculating 12-Week Schedule Engine (Standardized Enrollment Windows)
+(function generateForgeSchedule() {
+    const tables = ["Table of Matthew", "Table of Mark", "Table of Luke", "Table of John"];
+    const anchorDate = new Date("2027-01-11T00:00:00");
+    const cycleDays = 84; // 12 weeks
+    const today = new Date();
 
-            const diffTime = today - anchorDate;
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            
-            let currentCycleIndex = 0;
-            if (diffDays > 0) {
-                currentCycleIndex = Math.floor(diffDays / cycleDays);
-            }
+    const diffTime = today - anchorDate;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    let currentCycleIndex = 0;
+    if (diffDays > 0) {
+        currentCycleIndex = Math.floor(diffDays / cycleDays);
+    }
 
-            const grid = document.getElementById("cohort-grid");
-            if (!grid) return;
+    const grid = document.getElementById("cohort-grid");
+    if (!grid) return;
 
-            let html = "";
-            let activeCohortName = "";
+    let html = "";
+    let activeCohortName = "";
 
-            for (let i = 0; i < 4; i++) {
-                const cohortNumber = currentCycleIndex + i + 1;
-                const tableName = tables[(cohortNumber - 1) % 4];
-                const fullCohortName = `Forge ${cohortNumber}: ${tableName}`;
+    for (let i = 0; i < 4; i++) {
+        const cohortNumber = currentCycleIndex + i + 1;
+        const tableName = tables[(cohortNumber - 1) % 4];
+        const fullCohortName = `Forge ${cohortNumber}: ${tableName}`;
 
-                if (i === 0) activeCohortName = fullCohortName;
+        if (i === 0) activeCohortName = fullCohortName;
 
-                const launchDate = new Date(anchorDate);
-                launchDate.setDate(anchorDate.getDate() + ((currentCycleIndex + i) * cycleDays));
+        // Launch Date
+        const launchDate = new Date(anchorDate);
+        launchDate.setDate(anchorDate.getDate() + ((currentCycleIndex + i) * cycleDays));
 
-                const appCloseDate = new Date(launchDate);
-                appCloseDate.setDate(launchDate.getDate() - 14);
+        // 2-Week Application Window (Opens 28 days before launch, Closes 14 days before launch)
+        const appOpenDate = new Date(launchDate);
+        appOpenDate.setDate(launchDate.getDate() - 28);
 
-                const vettingStartDate = new Date(appCloseDate);
-                vettingStartDate.setDate(appCloseDate.getDate() + 1);
+        const appCloseDate = new Date(launchDate);
+        appCloseDate.setDate(launchDate.getDate() - 14);
 
-                const vettingEndDate = new Date(launchDate);
-                vettingEndDate.setDate(launchDate.getDate() - 1);
+        // Vetting Window (13 days before launch to 1 day before launch)
+        const vettingStartDate = new Date(appCloseDate);
+        vettingStartDate.setDate(appCloseDate.getDate() + 1);
 
-                const crucibleEndDate = new Date(launchDate);
-                crucibleEndDate.setDate(launchDate.getDate() + 62);
+        const vettingEndDate = new Date(launchDate);
+        vettingEndDate.setDate(launchDate.getDate() - 1);
 
-                const fmt = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
-                const fmtShort = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        // 9-Week Crucible End Date
+        const crucibleEndDate = new Date(launchDate);
+        crucibleEndDate.setDate(launchDate.getDate() + 62);
 
-                const isPrimary = (i === 0);
+        const fmt = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
+        const fmtShort = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
-                html += `
-                    <div class="${isPrimary ? 'bg-forge-800/90 border-2 border-forge-amber shadow-xl shadow-forge-amber/5' : 'bg-forge-800/40 border border-forge-700/60 opacity-90'} rounded-xl p-6 relative flex flex-col justify-between">
-                        ${isPrimary ? `<div class="absolute -top-3 right-4 px-3 py-0.5 bg-forge-amber text-forge-900 font-black text-[10px] uppercase rounded-full tracking-wider shadow">Recruiting Open</div>` : ''}
-                        <div>
-                            <div class="${isPrimary ? 'text-forge-amber' : 'text-slate-400'} text-xs font-bold uppercase tracking-wider mb-1">
-                                Launch Date: ${fmt(launchDate)}
-                            </div>
-                            <h4 class="heading-font text-xl font-bold ${isPrimary ? 'text-white' : 'text-slate-200'} mb-3">
-                                ${fullCohortName}
-                            </h4>
-                            
-                            <ul class="space-y-2 text-xs text-slate-300 mb-4 border-t border-forge-700/60 pt-3">
-                                <li class="flex justify-between">
-                                    <span class="text-slate-400">${isPrimary ? 'Applications Close:' : 'Applications Open:'}</span>
-                                    <strong class="text-white">${fmtShort(appCloseDate)}</strong>
-                                </li>
-                                <li class="flex justify-between">
-                                    <span class="text-slate-400">Vetting &amp; Matching:</span>
-                                    <span class="text-slate-300">${fmtShort(vettingStartDate)} – ${fmtShort(vettingEndDate)}</span>
-                                </li>
-                                <li class="flex justify-between">
-                                    <span class="text-slate-400">9-Week Crucible:</span>
-                                    <span class="text-slate-300">${fmtShort(launchDate)} – ${fmtShort(crucibleEndDate)}</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="pt-3 border-t border-forge-700/60 text-[11px] font-bold ${isPrimary ? 'text-forge-amber' : 'text-slate-400'} flex items-center justify-between">
-                            <span>${isPrimary ? 'Status: Accepting Iron & Anvils' : 'Status: Scheduled Cycle'}</span>
-                        </div>
+        const isPrimary = (i === 0);
+
+        html += `
+            <div class="${isPrimary ? 'bg-forge-800/90 border-2 border-forge-amber shadow-xl shadow-forge-amber/5' : 'bg-forge-800/40 border border-forge-700/60 opacity-90'} rounded-xl p-6 relative flex flex-col justify-between">
+                ${isPrimary ? `<div class="absolute -top-3 right-4 px-3 py-0.5 bg-forge-amber text-forge-900 font-black text-[10px] uppercase rounded-full tracking-wider shadow">Recruiting Open</div>` : ''}
+                <div>
+                    <div class="${isPrimary ? 'text-forge-amber' : 'text-slate-400'} text-xs font-bold uppercase tracking-wider mb-1">
+                        Launch Date: ${fmt(launchDate)}
                     </div>
-                `;
-            }
+                    <h4 class="heading-font text-xl font-bold ${isPrimary ? 'text-white' : 'text-slate-200'} mb-3">
+                        ${fullCohortName}
+                    </h4>
+                    
+                    <ul class="space-y-2 text-xs text-slate-300 mb-4 border-t border-forge-700/60 pt-3">
+                        <li class="flex justify-between">
+                            <span class="text-slate-400">Applications Open:</span>
+                            <span class="text-slate-300">${fmtShort(appOpenDate)}</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span class="text-slate-400">Applications Close:</span>
+                            <strong class="text-white">${fmtShort(appCloseDate)}</strong>
+                        </li>
+                        <li class="flex justify-between">
+                            <span class="text-slate-400">Vetting &amp; Matching:</span>
+                            <span class="text-slate-300">${fmtShort(vettingStartDate)} – ${fmtShort(vettingEndDate)}</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span class="text-slate-400">9-Week Crucible:</span>
+                            <span class="text-slate-300">${fmtShort(launchDate)} – ${fmtShort(crucibleEndDate)}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pt-3 border-t border-forge-700/60 text-[11px] font-bold ${isPrimary ? 'text-forge-amber' : 'text-slate-400'} flex items-center justify-between">
+                    <span>${isPrimary ? 'Status: Accepting Iron & Anvils' : 'Status: Scheduled Cycle'}</span>
+                </div>
+            </div>
+        `;
+    }
 
-            grid.innerHTML = html;
+    grid.innerHTML = html;
 
             // Sync form hidden input and label text with current active cohort
             const hiddenField = document.getElementById("target_cohort");
