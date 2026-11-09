@@ -595,6 +595,18 @@ document.getElementById('landing-apply-form').addEventListener('submit', async f
                 if (radio) radio.checked = true;
             }
         }
+        function toggleStep2Curriculum() {
+    var drawer = document.getElementById('step2-curriculum-drawer');
+    var badge = document.getElementById('step2-chevron');
+    
+    if (drawer.style.display === 'none' || drawer.style.display === '') {
+        drawer.style.display = 'block';
+        if (badge) badge.innerHTML = '✕ Close Breakdown';
+    } else {
+        drawer.style.display = 'none';
+        if (badge) badge.innerHTML = '+ View 9-Week Breakdown';
+    }
+}
     </script>
 </body>
 </html>
