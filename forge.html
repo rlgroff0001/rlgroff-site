@@ -329,61 +329,107 @@
             </div>
         </section>
 
-        <!-- APPLICATION & INTEREST FORM INLINE SECTION -->
-        <section id="framework" class="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-gradient-to-b from-forge-800 to-forge-900 border border-forge-amber/40 rounded-2xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-forge-amber/5 rounded-full filter blur-3xl pointer-events-none"></div>
+      <!-- APPLICATION & INTEREST FORM INLINE SECTION -->
+<section id="framework" class="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-gradient-to-b from-forge-800 to-forge-900 border border-forge-amber/40 rounded-2xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-forge-amber/5 rounded-full filter blur-3xl pointer-events-none"></div>
 
-                <div class="text-center max-w-2xl mx-auto space-y-4 mb-10">
-                    <h3 class="heading-font text-3xl font-bold text-white">REQUEST AN INVITATION TO THE FORGE</h3>
-                    <p class="text-slate-300 text-sm">
-                        Applications are reviewed to ensure strong alignment between mentors and mentees. Select your intended role below to join Cohort 1.
-                    </p>
+        <div class="text-center max-w-2xl mx-auto space-y-4 mb-10">
+            <h3 class="heading-font text-3xl font-bold text-white">REQUEST AN INVITATION TO THE FORGE</h3>
+            <p class="text-slate-300 text-sm">
+                Applications are reviewed to ensure strong alignment between mentors and mentees. Select your intended role below to join Cohort 1.
+            </p>
+        </div>
+
+        <form id="landing-apply-form" action="https://formspree.io/f/mrebgwjq" method="POST" class="space-y-6 max-w-xl mx-auto">
+            <!-- Formspree Subject Line Configuration -->
+            <input type="hidden" name="_subject" value="New The Forge Application Received">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">First & Last Name</label>
+                    <input type="text" name="name" required placeholder="John Doe" class="w-full bg-forge-900 border border-forge-700 focus:border-forge-amber rounded px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-forge-amber">
                 </div>
-
-                <form id="landing-apply-form" onsubmit="handleFormSubmit(event)" class="space-y-6 max-w-xl mx-auto">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">First & Last Name</label>
-                            <input type="text" required placeholder="John Doe" class="w-full bg-forge-900 border border-forge-700 focus:border-forge-amber rounded px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-forge-amber">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Email Address</label>
-                            <input type="email" required placeholder="john@example.com" class="w-full bg-forge-900 border border-forge-700 focus:border-forge-amber rounded px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-forge-amber">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">I am applying to be a:</label>
-                        <div class="grid grid-cols-2 gap-4">
-                            <label class="cursor-pointer border border-forge-700 bg-forge-900/50 p-4 rounded text-center hover:border-forge-amber has-[:checked]:border-forge-amber has-[:checked]:bg-forge-amber/10 transition-all">
-                                <input type="radio" name="role" value="Mentee" checked class="hidden">
-                                <div class="font-bold text-sm text-white">Mentee</div>
-                                <div class="text-[11px] text-slate-400 mt-1">Seeking growth & direction</div>
-                            </label>
-                            <label class="cursor-pointer border border-forge-700 bg-forge-900/50 p-4 rounded text-center hover:border-forge-amber has-[:checked]:border-forge-amber has-[:checked]:bg-forge-amber/10 transition-all">
-                                <input type="radio" name="role" value="Mentor" class="hidden">
-                                <div class="font-bold text-sm text-white">Mentor</div>
-                                <div class="text-[11px] text-slate-400 mt-1">Ready to invest in other men</div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Brief Background & Mentorship Goals</label>
-                        <textarea rows="3" placeholder="Tell us briefly about your current season of life, profession, and spiritual goals..." class="w-full bg-forge-900 border border-forge-700 focus:border-forge-amber rounded px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-forge-amber"></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full py-4 rounded font-bold uppercase tracking-widest text-xs bg-gradient-to-r from-forge-amber to-forge-amberGlow text-forge-900 hover:brightness-110 transition-all shadow-lg glow-amber">
-                        Submit Application
-                    </button>
-                    <p class="text-center text-[11px] text-slate-500">
-                        Strict confidentiality maintained. We will reach out via email within 48 hours.
-                    </p>
-                </form>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Email Address</label>
+                    <input type="email" name="email" required placeholder="john@example.com" class="w-full bg-forge-900 border border-forge-700 focus:border-forge-amber rounded px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-forge-amber">
+                </div>
             </div>
-        </section>
 
+            <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">I am applying to be a:</label>
+                <div class="grid grid-cols-2 gap-4">
+                    <label class="cursor-pointer border border-forge-700 bg-forge-900/50 p-4 rounded text-center hover:border-forge-amber has-[:checked]:border-forge-amber has-[:checked]:bg-forge-amber/10 transition-all">
+                        <input type="radio" name="role" value="Mentee" checked class="hidden">
+                        <div class="font-bold text-sm text-white">Mentee</div>
+                        <div class="text-[11px] text-slate-400 mt-1">Seeking growth & direction</div>
+                    </label>
+                    <label class="cursor-pointer border border-forge-700 bg-forge-900/50 p-4 rounded text-center hover:border-forge-amber has-[:checked]:border-forge-amber has-[:checked]:bg-forge-amber/10 transition-all">
+                        <input type="radio" name="role" value="Mentor" class="hidden">
+                        <div class="font-bold text-sm text-white">Mentor</div>
+                        <div class="text-[11px] text-slate-400 mt-1">Ready to invest in other men</div>
+                    </label>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Brief Background & Mentorship Goals</label>
+                <textarea name="background_and_goals" rows="3" placeholder="Tell us briefly about your current season of life, profession, and spiritual goals..." class="w-full bg-forge-900 border border-forge-700 focus:border-forge-amber rounded px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-forge-amber"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-4 rounded font-bold uppercase tracking-widest text-xs bg-gradient-to-r from-forge-amber to-forge-amberGlow text-forge-900 hover:brightness-110 transition-all shadow-lg glow-amber">
+                Submit Application
+            </button>
+            
+            <div id="form-feedback" class="hidden text-center p-3 text-sm rounded font-medium"></div>
+
+            <p class="text-center text-[11px] text-slate-500">
+                Strict confidentiality maintained. We will reach out via email within 48 hours.
+            </p>
+        </form>
+    </div>
+</section>
+
+</main>
+
+<script>
+document.getElementById('landing-apply-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const feedback = document.getElementById('form-feedback');
+    
+    submitBtn.innerText = 'Submitting...';
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            feedback.className = 'text-center p-3 text-sm rounded font-medium bg-emerald-950/80 border border-emerald-500/50 text-emerald-300';
+            feedback.innerText = 'Application received! We will be in touch with you shortly regarding Cohort 1.';
+            feedback.classList.remove('hidden');
+            form.reset();
+            submitBtn.innerText = 'Submit Application';
+            submitBtn.disabled = false;
+        } else {
+            throw new Error('Form submission failed');
+        }
+    } catch (err) {
+        feedback.className = 'text-center p-3 text-sm rounded font-medium bg-rose-950/80 border border-rose-500/50 text-rose-300';
+        feedback.innerText = 'There was an issue submitting your application. Please try again.';
+        feedback.classList.remove('hidden');
+        submitBtn.innerText = 'Submit Application';
+        submitBtn.disabled = false;
+    }
+});
+</script>
     </main>
 
     <!-- FOOTER -->
