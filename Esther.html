@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Esther Initiative | Women's Mentorship Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        esther: {
+                            950: '#140914',
+                            900: '#231024',
+                            800: '#38173b',
+                            700: '#542058',
+                            gold: '#d97706',
+                            rose: '#f43f5e',
+                            champagne: '#fde68a',
+                            accent: '#fb7185'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .heading-font { font-family: system-ui, -apple-system, sans-serif; font-weight: 800; letter-spacing: -0.025em; }
+    </style>
+</head>
+<body class="bg-esther-950 text-slate-100 font-sans antialiased selection:bg-esther-accent selection:text-esther-950">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-esther-950/90 backdrop-blur-md border-b border-esther-800/60">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-esther-800/80 border border-esther-700/60 rounded-xl flex items-center justify-center text-esther-champagne shadow-lg shadow-rose-950/20">
+                    <i data-lucide="crown" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <span class="heading-font text-lg font-bold tracking-tight text-white block leading-none">THE ESTHER INITIATIVE</span>
+                    <span class="text-[10px] font-bold tracking-widest text-esther-accent uppercase">Women's Mentorship Network</span>
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-300 uppercase tracking-wider">
+                <a href="#about" class="hover:text-esther-accent transition">Pillars</a>
+                <a href="#roadmap" class="hover:text-esther-accent transition">9-Week Curriculum</a>
+                <a href="#schedule" class="hover:text-esther-accent transition">Cohorts</a>
+            </nav>
+            <a href="#apply" class="py-2 px-4 bg-esther-accent hover:bg-rose-400 text-esther-950 font-extrabold text-xs uppercase tracking-wider rounded-lg transition shadow-md shadow-rose-950">
+                Apply Now
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-20 px-4 text-center relative overflow-hidden">
+            <div class="max-w-4xl mx-auto relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-esther-800/60 border border-esther-700/50 text-esther-champagne text-xs font-bold uppercase tracking-wider mb-6">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i> Cohort 1 Applications Open
+                </div>
+                <h1 class="heading-font text-4xl sm:text-6xl font-black text-white tracking-tight mb-6 uppercase">
+                    FOR SUCH A TIME<br><span class="text-esther-accent">AS THIS.</span>
+                </h1>
+                <p class="text-slate-300 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+                    An intentional 9-week mentorship ecosystem designed to cultivate courage, spiritual clarity, relational wisdom, and Kingdom leadership in women across every life season.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#apply" class="py-3 px-6 bg-esther-accent hover:bg-rose-400 text-esther-950 font-black text-sm uppercase tracking-wider rounded-xl transition shadow-xl shadow-rose-950/40">
+                        Apply for Cohort 1
+                    </a>
+                    <a href="#roadmap" class="py-3 px-6 bg-esther-900 hover:bg-esther-800 text-slate-200 font-bold text-sm uppercase tracking-wider rounded-xl border border-esther-700 transition">
+                        Explore 9-Week Roadmap
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3 Pillars -->
+        <section id="about" class="py-16 px-4 bg-esther-900/50 border-y border-esther-800/50">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold uppercase tracking-widest text-esther-accent">Core Foundations</span>
+                    <h2 class="heading-font text-3xl font-bold text-white mt-1">THE THREE ESTHER PILLARS</h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-esther-900 border border-esther-800 p-6 rounded-2xl shadow-xl">
+                        <div class="w-10 h-10 bg-esther-800/80 rounded-xl flex items-center justify-center text-esther-champagne mb-4 border border-esther-700">
+                            <i data-lucide="heart" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="heading-font text-lg font-bold text-white mb-2">1. Identity & Grace</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">Rooting your self-worth in Christ—breaking free from perfectionism, people-pleasing, cultural comparison, and performance anxiety.</p>
+                    </div>
+                    <div class="bg-esther-900 border border-esther-800 p-6 rounded-2xl shadow-xl">
+                        <div class="w-10 h-10 bg-esther-800/80 rounded-xl flex items-center justify-center text-esther-champagne mb-4 border border-esther-700">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="heading-font text-lg font-bold text-white mb-2">2. Titus 2 Mentorship</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">Direct 1-to-1 pairing between seasoned women leaders and mentees. High confidentiality, deep prayer, and honest life processing.</p>
+                    </div>
+                    <div class="bg-esther-900 border border-esther-800 p-6 rounded-2xl shadow-xl">
+                        <div class="w-10 h-10 bg-esther-800/80 rounded-xl flex items-center justify-center text-esther-champagne mb-4 border border-esther-700">
+                            <i data-lucide="compass" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="heading-font text-lg font-bold text-white mb-2">3. Strategic Calling</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">Stewarding your unique influence, career, family, and spiritual gifts with courage to impact your community for the Kingdom.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9-Week Curriculum Roadmap -->
+        <section id="roadmap" class="py-20 px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold uppercase tracking-widest text-esther-accent">Curriculum Blueprint</span>
+                    <h2 class="heading-font text-3xl font-bold text-white mt-1">THE 9-WEEK DISCIPLESHIP ARC</h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Phase 1 -->
+                    <div class="bg-esther-900 border border-esther-800 rounded-2xl p-6 relative overflow-hidden">
+                        <div class="text-xs font-black uppercase tracking-widest text-esther-accent mb-1">Phase 1 • Weeks 1–3</div>
+                        <h3 class="heading-font text-xl font-bold text-white mb-4">Anchored Identity</h3>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-esther-accent shrink-0 mt-0.5"></i><span><strong>W1: Daughter of the King:</strong> Dismantling performance-based worth.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-esther-accent shrink-0 mt-0.5"></i><span><strong>W2: The Secret Place:</strong> Cultivating personal prayer & scripture delight.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-esther-accent shrink-0 mt-0.5"></i><span><strong>W3: Emotional Health:</strong> Processing past hurt, comparison, & anxiety.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="bg-esther-900 border border-esther-800 rounded-2xl p-6 relative overflow-hidden">
+                        <div class="text-xs font-black uppercase tracking-widest text-esther-accent mb-1">Phase 2 • Weeks 4–6</div>
+                        <h3 class="heading-font text-xl font-bold text-white mb-4">Relational Wisdom</h3>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-esther-accent shrink-0 mt-0.5"></i><span><strong>W4: Healthy Boundaries:</strong> Honor, communication, & life balance.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-esther-accent shrink-0 mt-0.5"></i><span><strong>W5: Purity & Integrity:</strong> Guarding the heart in relationships & media.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-esther-accent shrink-0 mt-0.5"></i><span><strong>W6: Authentic Sisterhood:</strong> Deep community over isolation.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div class="bg-esther-900 border border-esther-800 rounded-2xl p-6 relative overflow-hidden">
+                        <div class="text-xs font-black uppercase tracking-widest text-esther-accent mb-1">Phase 3 • Weeks 7–9</div>
+                        <h3 class="heading-font text-xl font-bold text-white mb-4">Courageous Influence</h3>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-esther-accent shrink-0 mt-0.5"></i><span><strong>W7: Vocation as Worship:</strong> Bringing Kingdom light into your workplace.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-esther-accent shrink-0 mt-0.5"></i><span><strong>W8: Spiritual Warfare:</strong> Standing in intercessory prayer & discernment.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-esther-accent shrink-0 mt-0.5"></i><span><strong>W9: Commissioning:</strong> Stepping forward to lead & mentor others.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Cohort Schedule -->
+        <section id="schedule" class="py-16 px-4 bg-esther-900/50 border-t border-esther-800/50">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-10">
+                    <span class="text-xs font-bold uppercase tracking-widest text-esther-accent">12-Week Battle Rhythm</span>
+                    <h2 class="heading-font text-3xl font-bold text-white mt-1">UPCOMING COHORTS</h2>
+                </div>
+                <div id="cohort-cards-container" class="grid sm:grid-cols-2 gap-6"></div>
+            </div>
+        </section>
+
+        <!-- Application Section -->
+        <section id="apply" class="py-20 px-4">
+            <div class="max-w-xl mx-auto bg-esther-900 border border-esther-800 p-8 rounded-2xl shadow-2xl">
+                <div class="text-center mb-8">
+                    <h3 class="heading-font text-2xl font-bold text-white">Request an Invitation</h3>
+                    <p class="text-xs text-slate-400 mt-1">Select your intended role below to apply for Cohort 1.</p>
+                </div>
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+                    <input type="hidden" id="target_cohort" name="cohort" value="Esther 1">
+                    
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Applying As</label>
+                        <select name="role" required class="w-full bg-esther-950 border border-esther-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-esther-accent">
+                            <option value="Mentee">Mentee (Seeking Guidance)</option>
+                            <option value="Mentor">Mentor (Titus 2 Leader)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Full Name</label>
+                        <input type="text" name="name" required class="w-full bg-esther-950 border border-esther-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-esther-accent">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Cell Phone (For SMS Check-ins)</label>
+                        <input type="tel" name="phone" required class="w-full bg-esther-950 border border-esther-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-esther-accent">
+                    </div>
+                    <button type="submit" class="w-full py-3.5 bg-esther-accent hover:bg-rose-400 text-esther-950 font-black text-sm uppercase tracking-wider rounded-xl transition shadow-xl shadow-rose-950/40">
+                        Submit Application
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 border-t border-esther-800/60 text-center text-xs text-slate-500">
+        <p>© The Esther Initiative Mentorship Framework. All rights reserved.</p>
+    </footer>
+
+    <!-- Autonomous Schedule Engine Script -->
+    <script>
+        const ANCHOR_DATE = new Date('2027-01-11T00:00:00');
+        const CYCLE_DAYS = 84; 
+        const COHORT_NAMES = ["Ruth", "Hannah", "Abigail", "Deborah"];
+
+        function getCohortDates(index) {
+            const start = new Date(ANCHOR_DATE);
+            start.setDate(start.getDate() + (index * CYCLE_DAYS));
+            
+            const appOpen = new Date(start); appOpen.setDate(appOpen.getDate() - 28);
+            const appClose = new Date(start); appClose.setDate(appClose.getDate() - 14);
+            const crucibleEnd = new Date(start); crucibleEnd.setDate(crucibleEnd.getDate() + 63);
+
+            return { start, appOpen, appClose, crucibleEnd };
+        }
+
+        function fmt(d) { return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); }
+
+        function renderSchedule() {
+            const now = new Date();
+            const container = document.getElementById('cohort-cards-container');
+            let html = '';
+
+            for(let i = 0; i < 4; i++) {
+                const dates = getCohortDates(i);
+                const isOpen = (now >= dates.appOpen && now < dates.appClose) || (i === 0 && now < dates.appClose);
+                const badge = isOpen ? `<span class="bg-rose-500/20 text-esther-accent border border-rose-500/40 text-[10px] font-black px-2 py-0.5 rounded uppercase">Applications Open</span>`
+                                     : `<span class="bg-slate-800 text-slate-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase">Upcoming</span>`;
+
+                html += `
+                    <div class="bg-esther-900 border border-esther-800 p-5 rounded-xl shadow-lg relative">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="heading-font text-lg font-bold text-white">Esther ${i+1}: Table of ${COHORT_NAMES[i]}</h4>
+                            ${badge}
+                        </div>
+                        <div class="space-y-1.5 text-xs text-slate-300">
+                            <div class="flex justify-between"><span>Applications Open:</span> <strong class="text-white">${isOpen ? 'Open Now' : fmt(dates.appOpen)}</strong></div>
+                            <div class="flex justify-between"><span>Applications Close:</span> <strong class="text-white">${fmt(dates.appClose)}</strong></div>
+                            <div class="flex justify-between"><span>9-Week Launch:</span> <strong class="text-esther-accent">${fmt(dates.start)}</strong></div>
+                        </div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            renderSchedule();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
