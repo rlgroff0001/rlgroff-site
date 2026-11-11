@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Arbor | Discipleship for Young Men</title>
+    <title>The Arbor | Men's Discipleship (20–33) | Trinity Wellsprings Church</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
@@ -11,14 +11,14 @@
             theme: {
                 extend: {
                     colors: {
-                        arbor: {
-                            950: '#08120c',
-                            900: '#0f2217',
-                            800: '#183625',
-                            700: '#255038',
-                            emerald: '#22c55e',
-                            gold: '#d97706',
-                            accent: '#10b981'
+                        twc: {
+                            navy: '#0b1d3a',      // Primary Deep Ocean Blue
+                            slate: '#162c50',     // Secondary Card Slate
+                            teal: '#0284c7',      // Wellspring Accent Teal
+                            cyan: '#38bdf8',      // Bright Highlight Cyan
+                            sand: '#f8fafc',      // Clean White-Sand Canvas
+                            gold: '#f59e0b',      // Accent Warm Gold
+                            subtle: '#94a3b8'     // Muted Slate Text
                         }
                     }
                 }
@@ -29,26 +29,37 @@
         .heading-font { font-family: system-ui, -apple-system, sans-serif; font-weight: 800; letter-spacing: -0.025em; }
     </style>
 </head>
-<body class="bg-arbor-950 text-slate-100 font-sans antialiased selection:bg-arbor-emerald selection:text-arbor-950">
+<body class="bg-twc-navy text-slate-100 font-sans antialiased selection:bg-twc-teal selection:text-white">
 
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-arbor-950/90 backdrop-blur-md border-b border-arbor-800/60">
+    <!-- Top Church Bar -->
+    <div class="bg-slate-950 text-slate-400 text-[11px] py-1.5 px-4 border-b border-slate-800">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <span class="font-semibold tracking-wider uppercase text-twc-cyan">Trinity Wellsprings Church • Satellite Beach, FL</span>
+            <a href="https://trinitywellsprings.com" target="_blank" class="hover:text-white transition flex items-center gap-1">
+                <span>trinitywellsprings.com</span>
+                <i data-lucide="external-link" class="w-3 h-3"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-50 bg-twc-navy/95 backdrop-blur-md border-b border-twc-slate/80">
         <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
             <a href="#" class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-arbor-800/80 border border-arbor-700/60 rounded-xl flex items-center justify-center text-arbor-accent shadow-lg shadow-arbor-emerald/10">
-                    <i data-lucide="trees" class="w-5 h-5"></i>
+                <div class="w-10 h-10 bg-twc-teal/20 border border-twc-teal/40 rounded-xl flex items-center justify-center text-twc-cyan shadow-lg shadow-twc-teal/10">
+                    <i data-lucide="sprout" class="w-5 h-5"></i>
                 </div>
                 <div>
                     <span class="heading-font text-lg font-bold tracking-tight text-white block leading-none">THE ARBOR</span>
-                    <span class="text-[10px] font-bold tracking-widest text-arbor-accent uppercase">Men's Discipleship (20–33)</span>
+                    <span class="text-[10px] font-bold tracking-widest text-twc-cyan uppercase">Trinity Men's Discipleship (20–33)</span>
                 </div>
             </a>
             <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-300 uppercase tracking-wider">
-                <a href="#about" class="hover:text-arbor-accent transition">Framework</a>
-                <a href="#roadmap" class="hover:text-arbor-accent transition">9-Week Curriculum</a>
-                <a href="#schedule" class="hover:text-arbor-accent transition">Cohorts</a>
+                <a href="#about" class="hover:text-twc-cyan transition">Pillars</a>
+                <a href="#roadmap" class="hover:text-twc-cyan transition">9-Week Curriculum</a>
+                <a href="#schedule" class="hover:text-twc-cyan transition">Cohorts</a>
             </nav>
-            <a href="#apply" class="py-2 px-4 bg-arbor-accent hover:bg-emerald-400 text-arbor-950 font-extrabold text-xs uppercase tracking-wider rounded-lg transition shadow-md shadow-emerald-950">
+            <a href="#apply" class="py-2.5 px-5 bg-twc-teal hover:bg-sky-500 text-white font-extrabold text-xs uppercase tracking-wider rounded-lg transition shadow-md shadow-sky-950">
                 Apply Now
             </a>
         </div>
@@ -56,52 +67,52 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="py-20 px-4 text-center relative overflow-hidden">
+        <section class="py-20 px-4 text-center relative overflow-hidden bg-gradient-to-b from-twc-navy via-twc-slate to-twc-navy">
             <div class="max-w-4xl mx-auto relative z-10">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-arbor-800/60 border border-arbor-700/50 text-arbor-accent text-xs font-bold uppercase tracking-wider mb-6">
-                    <i data-lucide="sprout" class="w-4 h-4"></i> Cohort 1 Applications Open
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-twc-teal/15 border border-twc-teal/30 text-twc-cyan text-xs font-bold uppercase tracking-wider mb-6">
+                    <i data-lucide="droplets" class="w-4 h-4 text-twc-cyan"></i> Community Overflowing
                 </div>
                 <h1 class="heading-font text-4xl sm:text-6xl font-black text-white tracking-tight mb-6 uppercase">
-                    Rooted in Truth.<br><span class="text-arbor-accent">Built for Impact.</span>
+                    Rooted Deep.<br><span class="text-twc-cyan">Overflowing Life.</span>
                 </h1>
                 <p class="text-slate-300 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
-                    The Arbor is an intentional 9-week discipleship engine designed for single men ages 20–33. Move from drifting ambition to grounded Kingdom stewardship in career, purity, finances, and relational readiness.
+                    The Arbor is an intentional 9-week discipleship engine for single young men ages 20–33 at Trinity Wellsprings Church. Move from passive drift into grounded Kingdom stewardship in career, purity, finances, and relational readiness.
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#apply" class="py-3 px-6 bg-arbor-accent hover:bg-emerald-400 text-arbor-950 font-black text-sm uppercase tracking-wider rounded-xl transition shadow-xl shadow-emerald-950/40">
+                    <a href="#apply" class="py-3.5 px-7 bg-twc-teal hover:bg-sky-500 text-white font-black text-sm uppercase tracking-wider rounded-xl transition shadow-xl shadow-twc-teal/20">
                         Apply for Cohort 1
                     </a>
-                    <a href="#roadmap" class="py-3 px-6 bg-arbor-900 hover:bg-arbor-800 text-slate-200 font-bold text-sm uppercase tracking-wider rounded-xl border border-arbor-700 transition">
-                        View Curriculum
+                    <a href="#roadmap" class="py-3.5 px-7 bg-twc-navy hover:bg-twc-slate text-slate-200 font-bold text-sm uppercase tracking-wider rounded-xl border border-twc-slate transition">
+                        View 9-Week Arc
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- 3 Pillars -->
-        <section id="about" class="py-16 px-4 bg-arbor-900/50 border-y border-arbor-800/50">
+        <section id="about" class="py-16 px-4 bg-twc-slate/40 border-y border-twc-slate/60">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-arbor-accent">Grounded Foundation</span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-twc-cyan">Trinity Discipleship Pillars</span>
                     <h2 class="heading-font text-3xl font-bold text-white mt-1">THE THREE ARBOR PILLARS</h2>
                 </div>
                 <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-arbor-900 border border-arbor-800 p-6 rounded-2xl shadow-xl">
-                        <div class="w-10 h-10 bg-arbor-800/80 rounded-xl flex items-center justify-center text-arbor-accent mb-4 border border-arbor-700">
+                    <div class="bg-twc-navy border border-twc-slate p-6 rounded-2xl shadow-xl">
+                        <div class="w-10 h-10 bg-twc-teal/20 rounded-xl flex items-center justify-center text-twc-cyan mb-4 border border-twc-teal/30">
                             <i data-lucide="compass" class="w-5 h-5"></i>
                         </div>
-                        <h3 class="heading-font text-lg font-bold text-white mb-2">1. Vocation & Steward Mindset</h3>
+                        <h3 class="heading-font text-lg font-bold text-white mb-2">1. Vocation & Stewardship</h3>
                         <p class="text-slate-300 text-sm leading-relaxed">Transform your 20s from passive career-seeking into strategic Kingdom stewardship—budgeting, work ethic, and directional vision.</p>
                     </div>
-                    <div class="bg-arbor-900 border border-arbor-800 p-6 rounded-2xl shadow-xl">
-                        <div class="w-10 h-10 bg-arbor-800/80 rounded-xl flex items-center justify-center text-arbor-accent mb-4 border border-arbor-700">
+                    <div class="bg-twc-navy border border-twc-slate p-6 rounded-2xl shadow-xl">
+                        <div class="w-10 h-10 bg-twc-teal/20 rounded-xl flex items-center justify-center text-twc-cyan mb-4 border border-twc-teal/30">
                             <i data-lucide="shield-check" class="w-5 h-5"></i>
                         </div>
-                        <h3 class="heading-font text-lg font-bold text-white mb-2">2. Purity & High Trust</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed">Direct 1-to-1 mentorship pairing with an older mentor. Unfiltered honesty regarding purity, habits, and digital discipline.</p>
+                        <h3 class="heading-font text-lg font-bold text-white mb-2">2. Purity & High Accountability</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">Direct 1-to-1 mentorship pairing with a seasoned Trinity elder or leader. Unfiltered honesty regarding purity, digital discipline, and habits.</p>
                     </div>
-                    <div class="bg-arbor-900 border border-arbor-800 p-6 rounded-2xl shadow-xl">
-                        <div class="w-10 h-10 bg-arbor-800/80 rounded-xl flex items-center justify-center text-arbor-accent mb-4 border border-arbor-700">
+                    <div class="bg-twc-navy border border-twc-slate p-6 rounded-2xl shadow-xl">
+                        <div class="w-10 h-10 bg-twc-teal/20 rounded-xl flex items-center justify-center text-twc-cyan mb-4 border border-twc-teal/30">
                             <i data-lucide="heart-handshake" class="w-5 h-5"></i>
                         </div>
                         <h3 class="heading-font text-lg font-bold text-white mb-2">3. Relational Readiness</h3>
@@ -115,41 +126,41 @@
         <section id="roadmap" class="py-20 px-4">
             <div class="max-w-5xl mx-auto">
                 <div class="text-center mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-arbor-accent">9-Week Curriculum Arc</span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-twc-cyan">9-Week Curriculum Arc</span>
                     <h2 class="heading-font text-3xl font-bold text-white mt-1">THE SINGLE MAN'S ROADMAP</h2>
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-6">
                     <!-- Phase 1 -->
-                    <div class="bg-arbor-900 border border-arbor-800 rounded-2xl p-6 relative overflow-hidden">
-                        <div class="text-xs font-black uppercase tracking-widest text-arbor-accent mb-1">Phase 1 • Weeks 1–3</div>
+                    <div class="bg-twc-slate/60 border border-twc-slate rounded-2xl p-6 relative overflow-hidden">
+                        <div class="text-xs font-black uppercase tracking-widest text-twc-cyan mb-1">Phase 1 • Weeks 1–3</div>
                         <h3 class="heading-font text-xl font-bold text-white mb-4">Establishing the Roots</h3>
                         <ul class="space-y-3 text-xs text-slate-300">
-                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-arbor-accent shrink-0 mt-0.5"></i><span><strong>W1: Rejecting Drift:</strong> Establishing daily spiritual discipline & morning rhythms.</span></li>
-                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-arbor-accent shrink-0 mt-0.5"></i><span><strong>W2: Financial Freedom:</strong> Budgeting, debt elimination, & generous giving in your 20s.</span></li>
-                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-arbor-accent shrink-0 mt-0.5"></i><span><strong>W3: Vocation as Worship:</strong> Building deep work habits and career intentionality.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-twc-cyan shrink-0 mt-0.5"></i><span><strong>W1: Rejecting Drift:</strong> Establishing daily spiritual discipline & morning rhythms.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-twc-cyan shrink-0 mt-0.5"></i><span><strong>W2: Financial Freedom:</strong> Budgeting, debt elimination, & generous giving in your 20s.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-twc-cyan shrink-0 mt-0.5"></i><span><strong>W3: Vocation as Worship:</strong> Building deep work habits and career intentionality.</span></li>
                         </ul>
                     </div>
 
                     <!-- Phase 2 -->
-                    <div class="bg-arbor-900 border border-arbor-800 rounded-2xl p-6 relative overflow-hidden">
-                        <div class="text-xs font-black uppercase tracking-widest text-arbor-accent mb-1">Phase 2 • Weeks 4–6</div>
+                    <div class="bg-twc-slate/60 border border-twc-slate rounded-2xl p-6 relative overflow-hidden">
+                        <div class="text-xs font-black uppercase tracking-widest text-twc-cyan mb-1">Phase 2 • Weeks 4–6</div>
                         <h3 class="heading-font text-xl font-bold text-white mb-4">Internal Integrity</h3>
                         <ul class="space-y-3 text-xs text-slate-300">
-                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-arbor-accent shrink-0 mt-0.5"></i><span><strong>W4: Purity & Screen Safeguards:</strong> Eradicating secret habits & building total transparency.</span></li>
-                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-arbor-accent shrink-0 mt-0.5"></i><span><strong>W5: Emotional Maturity:</strong> Overcoming father-wounds, anger, & passive isolation.</span></li>
-                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-arbor-accent shrink-0 mt-0.5"></i><span><strong>W6: Brotherhood:</strong> Moving from casual acquaintances to high-accountability allies.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-twc-cyan shrink-0 mt-0.5"></i><span><strong>W4: Purity & Screen Safeguards:</strong> Eradicating secret habits & building total transparency.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-twc-cyan shrink-0 mt-0.5"></i><span><strong>W5: Emotional Maturity:</strong> Overcoming father-wounds, anger, & passive isolation.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-twc-cyan shrink-0 mt-0.5"></i><span><strong>W6: Brotherhood:</strong> Moving from casual acquaintances to high-accountability allies.</span></li>
                         </ul>
                     </div>
 
                     <!-- Phase 3 -->
-                    <div class="bg-arbor-900 border border-arbor-800 rounded-2xl p-6 relative overflow-hidden">
-                        <div class="text-xs font-black uppercase tracking-widest text-arbor-accent mb-1">Phase 3 • Weeks 7–9</div>
-                        <h3 class="heading-font text-xl font-bold text-white mb-4">Mission & Marriage Preparedness</h3>
+                    <div class="bg-twc-slate/60 border border-twc-slate rounded-2xl p-6 relative overflow-hidden">
+                        <div class="text-xs font-black uppercase tracking-widest text-twc-cyan mb-1">Phase 3 • Weeks 7–9</div>
+                        <h3 class="heading-font text-xl font-bold text-white mb-4">Mission & Readiness</h3>
                         <ul class="space-y-3 text-xs text-slate-300">
-                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-arbor-accent shrink-0 mt-0.5"></i><span><strong>W7: Preparing for Marriage:</strong> What it takes to be a husband before you date.</span></li>
-                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-arbor-accent shrink-0 mt-0.5"></i><span><strong>W8: Intentional Courtship:</strong> Biblical standards vs. modern hookup culture.</span></li>
-                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-arbor-accent shrink-0 mt-0.5"></i><span><strong>W9: Commissioning:</strong> Stepping into leadership in church & community.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-twc-cyan shrink-0 mt-0.5"></i><span><strong>W7: Preparing for Marriage:</strong> What it takes to be a husband before you date.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-twc-cyan shrink-0 mt-0.5"></i><span><strong>W8: Intentional Courtship:</strong> Biblical standards vs. modern hookup culture.</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-twc-cyan shrink-0 mt-0.5"></i><span><strong>W9: Commissioning:</strong> Stepping into leadership at Trinity & in the Space Coast.</span></li>
                         </ul>
                     </div>
                 </div>
@@ -157,10 +168,10 @@
         </section>
 
         <!-- Automated Schedule Section -->
-        <section id="schedule" class="py-16 px-4 bg-arbor-900/50 border-t border-arbor-800/50">
+        <section id="schedule" class="py-16 px-4 bg-twc-slate/40 border-t border-twc-slate/60">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-10">
-                    <span class="text-xs font-bold uppercase tracking-widest text-arbor-accent">12-Week Battle Rhythm</span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-twc-cyan">12-Week Battle Rhythm</span>
                     <h2 class="heading-font text-3xl font-bold text-white mt-1">UPCOMING COHORTS</h2>
                 </div>
                 <div id="cohort-cards-container" class="grid sm:grid-cols-2 gap-6"></div>
@@ -169,26 +180,26 @@
 
         <!-- Application Form -->
         <section id="apply" class="py-20 px-4">
-            <div class="max-w-xl mx-auto bg-arbor-900 border border-arbor-800 p-8 rounded-2xl shadow-2xl">
+            <div class="max-w-xl mx-auto bg-twc-slate/80 border border-twc-slate p-8 rounded-2xl shadow-2xl">
                 <div class="text-center mb-8">
                     <h3 class="heading-font text-2xl font-bold text-white">Apply for The Arbor</h3>
-                    <p class="text-xs text-slate-400 mt-1">Single Men Ages 20–33 • One-on-One Mentorship</p>
+                    <p class="text-xs text-slate-300 mt-1">Trinity Wellsprings Church • Single Men Ages 20–33</p>
                 </div>
-                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
-                    <input type="hidden" id="target_cohort" name="cohort" value="Arbor 1">
+                <form action="https://formspree.io/f/mrebgwjq" method="POST" class="space-y-4">
+                    <input type="hidden" id="target_cohort" name="cohort" value="Arbor 1 (Trinity Wellsprings)">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Full Name</label>
-                        <input type="text" name="name" required class="w-full bg-arbor-950 border border-arbor-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-arbor-accent">
+                        <input type="text" name="name" required class="w-full bg-twc-navy border border-twc-slate rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-twc-cyan">
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Age & Current Marital Status</label>
-                        <input type="text" name="age_status" placeholder="e.g. 25, Single" required class="w-full bg-arbor-950 border border-arbor-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-arbor-accent">
+                        <input type="text" name="age_status" placeholder="e.g. 24, Single" required class="w-full bg-twc-navy border border-twc-slate rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-twc-cyan">
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Cell Phone (For SMS Check-ins)</label>
-                        <input type="tel" name="phone" required class="w-full bg-arbor-950 border border-arbor-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-arbor-accent">
+                        <input type="tel" name="phone" required class="w-full bg-twc-navy border border-twc-slate rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-twc-cyan">
                     </div>
-                    <button type="submit" class="w-full py-3.5 bg-arbor-accent hover:bg-emerald-400 text-arbor-950 font-black text-sm uppercase tracking-wider rounded-xl transition shadow-xl shadow-emerald-950/40">
+                    <button type="submit" class="w-full py-3.5 bg-twc-teal hover:bg-sky-500 text-white font-black text-sm uppercase tracking-wider rounded-xl transition shadow-xl shadow-sky-950/40">
                         Submit Application
                     </button>
                 </form>
@@ -196,11 +207,14 @@
         </section>
     </main>
 
-    <footer class="py-8 border-t border-arbor-800/60 text-center text-xs text-slate-500">
-        <p>© The Arbor Discipleship Framework. All rights reserved.</p>
+    <!-- TWC Footer -->
+    <footer class="py-10 bg-slate-950 border-t border-slate-800 text-center text-xs text-slate-400 space-y-3">
+        <div class="font-bold text-white uppercase tracking-wider">Trinity Wellsprings Church</div>
+        <p>638 S Patrick Drive • Satellite Beach, FL 32937 • (321) 777-2047</p>
+        <p class="text-[10px] text-slate-500">© The Arbor Discipleship Framework • Community Overflowing</p>
     </footer>
 
-    <!-- Autonomous Schedule Engine Script -->
+    <!-- Dynamic Schedule Script -->
     <script>
         const ANCHOR_DATE = new Date('2027-01-11T00:00:00');
         const CYCLE_DAYS = 84; 
@@ -212,9 +226,8 @@
             
             const appOpen = new Date(start); appOpen.setDate(appOpen.getDate() - 28);
             const appClose = new Date(start); appClose.setDate(appClose.getDate() - 14);
-            const crucibleEnd = new Date(start); crucibleEnd.setDate(crucibleEnd.getDate() + 63);
 
-            return { start, appOpen, appClose, crucibleEnd };
+            return { start, appOpen, appClose };
         }
 
         function fmt(d) { return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); }
@@ -227,11 +240,11 @@
             for(let i = 0; i < 4; i++) {
                 const dates = getCohortDates(i);
                 const isOpen = (now >= dates.appOpen && now < dates.appClose) || (i === 0 && now < dates.appClose);
-                const badge = isOpen ? `<span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[10px] font-black px-2 py-0.5 rounded uppercase">Applications Open</span>`
+                const badge = isOpen ? `<span class="bg-sky-500/20 text-twc-cyan border border-sky-500/40 text-[10px] font-black px-2 py-0.5 rounded uppercase">Applications Open</span>`
                                      : `<span class="bg-slate-800 text-slate-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase">Upcoming</span>`;
 
                 html += `
-                    <div class="bg-arbor-900 border border-arbor-800 p-5 rounded-xl shadow-lg relative">
+                    <div class="bg-twc-navy border border-twc-slate p-5 rounded-xl shadow-lg relative">
                         <div class="flex justify-between items-center mb-3">
                             <h4 class="heading-font text-lg font-bold text-white">Arbor ${i+1}: Table of ${COHORT_NAMES[i]}</h4>
                             ${badge}
@@ -239,7 +252,7 @@
                         <div class="space-y-1.5 text-xs text-slate-300">
                             <div class="flex justify-between"><span>Applications Open:</span> <strong class="text-white">${isOpen ? 'Open Now' : fmt(dates.appOpen)}</strong></div>
                             <div class="flex justify-between"><span>Applications Close:</span> <strong class="text-white">${fmt(dates.appClose)}</strong></div>
-                            <div class="flex justify-between"><span>9-Week Launch:</span> <strong class="text-emerald-400">${fmt(dates.start)}</strong></div>
+                            <div class="flex justify-between"><span>9-Week Launch:</span> <strong class="text-twc-cyan">${fmt(dates.start)}</strong></div>
                         </div>
                     </div>
                 `;
@@ -252,5 +265,7 @@
             if (typeof lucide !== 'undefined') lucide.createIcons();
         });
     </script>
+</body>
+</html>
 </body>
 </html>
